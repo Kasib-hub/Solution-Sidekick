@@ -20,4 +20,4 @@ def home(request):
     else:
         print('bad api call')
 
-    return render(request, 'dilution/base.html', {'data': search_text})
+    return render(request, 'sidekick_app/base.html', {'data': search_text})
