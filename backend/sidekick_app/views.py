@@ -5,7 +5,7 @@ import requests
 
 # home route is making an api call to wikipedia to pull an antigen system
 # How would I get the search term from my front end? Perhaps wait until react
-def home(request):
+def index(request):
     url = 'https://en.wikipedia.org/w/api.php'
     search = 'Duffy_antigen_system'
 
