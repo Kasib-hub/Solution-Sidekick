@@ -1,0 +1,29 @@
+SOLUTION SIDEKICK (SolSide)
+
+C1 * V1 = C2 * V2
+
+I want the app to have users and allow them to make dilutions
+  * name the dilutions, save to user, CREATE
+  * READ - make like a feed for the dilutions, let all user see. Perhaps vote on popular ones?
+  * UPDATE - can go back in change numbers, change if they want to dilute it further, increase volume?
+  * DELETE - let users delete their own creations
+  * let people name the solvents and solutes in the dilution
+
+CRUD, React, Django are required.
+  -> We need atleast 3 api calls 
+
+  Can you write your own apis to use in the project? yes, but it isn't recommended.
+
+On the api stuff
+  - perhaps the dilution can also return a wiki page on the solution you wrote in on random blood antigen groups
+  - incorporate 
+    
+
+Chad thinks its a good idea. Maybe incorporate an AI chat bot. I was thinking about that!
+  - uses chatgpt and python library, and make plots. 
+
+() I could stand to implement user authentication first before diving into react
+
+WikiAPI EX:
+  - Getting antigen system:
+      https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=Duffy_antigen_system&format=json&exsentences=2&explaintext=1&formatversion=2
