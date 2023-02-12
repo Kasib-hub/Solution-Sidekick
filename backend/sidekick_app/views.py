@@ -14,6 +14,7 @@ def index(request):
     response = requests.get(url + params)
 
     # break down the json
+    print(response.headers)
     if response.status_code == 200:
         data = response.json()
         search_text = data['query']['pages'][0]

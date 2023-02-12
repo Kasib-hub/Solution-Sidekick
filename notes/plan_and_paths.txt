@@ -27,3 +27,15 @@ Chad thinks its a good idea. Maybe incorporate an AI chat bot. I was thinking ab
 WikiAPI EX:
   - Getting antigen system:
       https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=Duffy_antigen_system&format=json&exsentences=2&explaintext=1&formatversion=2
+
+REQUIREMENTS
+A few of you have already talked with me about your projects.
+For those of you who like lists, here are the official requirements for Personal Projects (Assessment 5):
+  Use Django for Backend
+  Use React for Frontend
+  CRUD resources
+  Use at least 2 3rd party APIs
+  Authentication (optional but encouraged)
+  Make it look good
+If you have an idea that doesn't conform with the above, talk to me and we'll work something out.
+Once you have been given the OK by an instructor, please fill out this spreadsheet:
