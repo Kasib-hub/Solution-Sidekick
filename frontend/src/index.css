@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,6 +15,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* color scheme */
+  --cream: #fffced;
+  --corn: #fae887;
+  --lemon: #f2d216;
+  --gold: #948829;
+  --violet: #aa67fe;
+  --purple: #6a4fa0;
+  --gray: #aeb0ae;
+  --dark-gray: #374147;
+  --black: #242424;
+
 }
 
 a {
