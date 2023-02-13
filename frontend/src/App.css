@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+.App {
+  border: 2px solid var(--violet);
+  /* top, right+left, bottom */
+  padding: 30px 30px;
+  /* setting the width is messing with the margin */
+  width: 75vw;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

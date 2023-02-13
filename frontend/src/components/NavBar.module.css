@@ -1,3 +1,4 @@
-button {
-  background-color: var();
+.navBar {
+  border: 2px solid var(--violet);
+  text-align: left;
 }
