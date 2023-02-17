@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Solution, Comment, Like
 
 
@@ -34,7 +35,7 @@ class CommentSerializer(ModelSerializer):
 class LikeSerializer(ModelSerializer):
     class Meta:
         model = Like
-        fields = ["__all__"]
+        fields = "__all__"
 
 # Probably don't need a serializer for likes since there shouldn't be a need for a user to enter info besides a "checkbox"
 
