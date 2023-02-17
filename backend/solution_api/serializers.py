@@ -5,7 +5,7 @@ from .models import Solution, Comment, Like
 class SolutionSerializer(ModelSerializer):
     class Meta:
         model = Solution
-        fields = ["title", "instructions"]
+        fields = ["title", "instructions", "source_conc", "source_vol", "final_conc", "final_vol"]
 
     def create(self, validated_data):
         return Solution.objects.create(**validated_data)
@@ -13,7 +13,10 @@ class SolutionSerializer(ModelSerializer):
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.instructions = validated_data.get('instructions', instance.instructions)
-        instance.created_at = validated_data.get('created_at', instance.created_at)
+        instance.source_conc = validated_data.get('source_conc', instance.source_conc)
+        instance.source_vol = validated_data.get('source_vol', instance.source_vol)
+        instance.final_conc = validated_data.get('final_conc', instance.final_conc)
+        instance.final_vol = validated_data.get('final_vol', instance.final_vol)
         instance.save()
         return instance
 
