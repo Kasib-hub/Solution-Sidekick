@@ -1,4 +1,7 @@
 .navBar {
-  border: 2px solid var(--violet);
+  width: fit-content;
   text-align: left;
+  background-color: var(--corn);
+  padding: 5px;
+  border-radius: 10px;
 }

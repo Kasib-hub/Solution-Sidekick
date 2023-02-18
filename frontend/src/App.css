@@ -7,6 +7,7 @@
 
 .App {
   border: 2px solid var(--violet);
+  border-radius: 1rem;
   /* top, right+left, bottom */
   padding: 30px 30px;
   /* setting the width is messing with the margin */

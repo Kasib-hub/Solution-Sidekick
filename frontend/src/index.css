@@ -3,8 +3,7 @@
 :root {
   font-family: 'IBM Plex Mono', monospace;
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  color-scheme: light dark;
-  color: var(--dar);
+  color: var(--black);
   background-color: var(--cream);
   font-size: 16px;
   font-synthesis: none;

@@ -9,6 +9,9 @@ const HomePage = () => {
       <div>
           <h2>The HomePage</h2>
           <Link to='/solution'><button className={HomePageCSS.homeBtn}>Let's Make a Solution</button></Link>
+          <p>I want the homepage to consist of div with formula maker</p>
+          <p>Users should be taken directly to what they need</p>
+          <p>Anyone can use the calculator, but only authenticated users can save their solutions</p>
     
       </div>
   )
