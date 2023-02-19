@@ -32,7 +32,6 @@ const fetchSolutionbyId = (solutionID) => {
 }
 
 const createSolution = (solutionObj) => {
-  let data = ''
   fetch(`${BASE_URL}solution_api`, {
     method: 'POST',
     headers: {
@@ -42,7 +41,6 @@ const createSolution = (solutionObj) => {
     body: JSON.stringify(solutionObj)
   })
     .then(res => res.ok ? console.log('POST success') : console.log('POST no good'))
-  return data
 }
 
 // put request on a wine object

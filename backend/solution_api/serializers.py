@@ -12,29 +12,30 @@ from django.contrib.auth.models import User
 
 class SolutionSerializer(ModelSerializer):
     # define the new serializer property with method field
-    measurements = serializers.SerializerMethodField()
     creator_name = serializers.SerializerMethodField()
 
     # make sure to add the new property to fields
     class Meta:
         model = Solution
-        fields = ["title", "creator_name", "created_at", "measurements", "instructions", "modified"]
-
-    # define how to get the value
-    def get_measurements(self, obj):
-        return {
-            "source_conc": obj.source_conc,
-            "source_vol": obj.source_vol,
-            "final_conc": obj.final_conc,
-            "final_vol": obj.final_vol
-        }
+        fields = ["title", "creator_name", "created_at", "instructions", "modified",
+         "source_conc", "source_vol", "final_conc", "final_vol", "creator"]
 
     def get_creator_name(self, obj):
         creator = obj.creator
         return creator.username
 
     def create(self, validated_data):
-        return Solution.objects.create(**validated_data)
+        instance = Solution.objects.create(
+            title=validated_data['title'],
+            instructions=validated_data['instructions'],
+            source_conc=validated_data['source_conc'],
+            source_vol=validated_data['source_vol'],
+            final_conc=validated_data['final_conc'],
+            final_vol=validated_data['final_vol'],
+            creator=validated_data['creator']
+        )
+        return instance
+        
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
