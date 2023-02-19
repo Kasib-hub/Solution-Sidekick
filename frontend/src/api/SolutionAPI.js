@@ -1,5 +1,6 @@
 // so now all of my requests need tokens, pass into function?
 // logging out is deleting the token and navigating back to sign up page.
+
 const BASE_URL = 'http://127.0.0.1:8000/';
 const TOKEN = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
 
@@ -30,6 +31,20 @@ const fetchSolutionbyId = (solutionID) => {
   return data
 }
 
+const createSolution = (solutionObj) => {
+  let data = ''
+  fetch(`${BASE_URL}solution_api`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${TOKEN}`
+    },
+    body: JSON.stringify(solutionObj)
+  })
+    .then(res => res.ok ? console.log('POST success') : console.log('POST no good'))
+  return data
+}
+
 // put request on a wine object
 const putSolutionbyId = (solutionID, updatedData) => {
   fetch(`${BASE_URL}solution_api/${solutionID}`, {
@@ -42,17 +57,6 @@ const putSolutionbyId = (solutionID, updatedData) => {
   })
     .then(res => res.ok ? console.log('put success') : console.log('put no good'))
 
-}
-
-const signUp = (userData) => {
-  return fetch(`${BASE_URL}accounts/signup`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userData)
-  }) 
-    
 }
 
 // stores token in a cookie
@@ -75,7 +79,7 @@ export {
   BASE_URL,
   fetchAllSolutions,
   fetchSolutionbyId,
+  createSolution,
   putSolutionbyId,
-  signUp,
   getToken,
 };

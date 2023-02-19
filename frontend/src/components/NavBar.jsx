@@ -9,10 +9,12 @@ const NavBar = () => {
       <span> | </span>
       <Link to='/solution_list'>All Solutions</Link>
       <span> | </span>
+      <Link to='/create_solution'>Create a Solution</Link>
+      <span> | </span>
       <Link to='/login'>Login</Link>
       <span> | </span>
       <Link to='/signup'>Signup</Link>
-      <span> | </span>
+      
 
     </div>
   )
