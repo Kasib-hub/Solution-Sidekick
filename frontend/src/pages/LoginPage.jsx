@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { loginWithToken } from "../api/SolutionAPI"
+import { checkToken } from "../helpers/helperFunctions"
 
 const LoginPage = () => {
 
@@ -14,7 +15,10 @@ const LoginPage = () => {
       "email": event.target.password.value
     }
     loginWithToken(userData)
-    navigate('/solution_list')
+    
+    // set timeout to give app time to retrieve new token
+    setTimeout(() => {navigate('/solution_list')}, 500)
+    
     
   }
 

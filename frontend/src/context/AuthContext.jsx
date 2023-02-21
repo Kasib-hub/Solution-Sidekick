@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { getUserData } from "../api/SolutionAPI";
 const AuthContext = createContext()
 
 export default AuthContext
@@ -18,7 +19,7 @@ export const AuthProvider = ({children}) => {
 
 
   useEffect(() => {
-
+    
   }, [])
 
   let contextData = {

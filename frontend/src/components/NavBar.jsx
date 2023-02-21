@@ -21,6 +21,8 @@ const NavBar = () => {
       <Link to='/login'>Login</Link>
       <span> | </span>
       <Link to='/signup'>Signup</Link>
+      <span> | </span>
+      <Link to='/logout'>Log Out</Link>
       
 
     </div>

@@ -5,6 +5,7 @@ import SolutionListPage from './pages/SolutionListPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import CreateSolutionPage from './pages/CreateSolutionPage';
+import LogoutPage from './pages/LogoutPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css'
 import NavBar from './components/NavBar'
@@ -28,6 +29,7 @@ const App = () => {
 
           <Route path='/login' element={<LoginPage />}/>
           <Route path='/signup' element={<SignupPage />}/>
+          <Route path='/logout' element={<LogoutPage />}/>
           
         </Routes>
         {/* <Link to='solution'>Make a Solution</Link> */}

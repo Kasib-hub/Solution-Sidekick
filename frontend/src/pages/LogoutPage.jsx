@@ -1,15 +1,13 @@
 import { useNavigate } from "react-router-dom"
-import { getToken } from "../api/SolutionAPI"
+import { loginWithToken } from "../api/SolutionAPI"
 
 const LogoutPage = () => {
 
   const navigate = useNavigate()
 
   // navigating after a signup, but I also want a token and a post to the 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    
-    getToken(userData)
+  const handleClick = (event) => {
+    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC path=/;`
     navigate('/login')
     
   }
@@ -17,7 +15,7 @@ const LogoutPage = () => {
   return (
     <div>
       <h3>Are you sure want to Logout?</h3>
-      <button onSubmit={handleSubmit}>Yes, Log me Out</button>
+      <button type='submit' className='submitBtn' onClick={handleClick}>Yes, Log me Out</button>
       
     </div>
 
