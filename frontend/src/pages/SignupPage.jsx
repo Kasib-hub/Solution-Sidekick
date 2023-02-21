@@ -29,7 +29,7 @@ const SignupPage = () => {
       body: JSON.stringify(userData)
     })
     const data = await res.json()
-    res.status === 400 ? setErr(data.username[0]) : navigate('/')
+    res.status === 400 ? setErr(data.username[0]) : navigate('/login')
   }
 
   return (

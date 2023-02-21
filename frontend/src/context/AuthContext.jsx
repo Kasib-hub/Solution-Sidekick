@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { BASE_URL, TOKEN } from "../api/SolutionAPI";
 const AuthContext = createContext()
 
 export default AuthContext

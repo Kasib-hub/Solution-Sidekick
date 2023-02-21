@@ -29,13 +29,12 @@ const CreateSolutionPage = () => {
 
   // retreive user id to make the post request
   useEffect(() => {
-    getUserData().then(res => setUserID(res.data.user_id))
+    getUserData().then(data => setUserID(data.user_id))
   }, [])
 
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
     event.preventDefault()
-
     let solutionObj = {
       "source_conc": event.target.source_conc.value,
       "source_vol": event.target.source_vol.value,
@@ -58,23 +57,52 @@ const CreateSolutionPage = () => {
   // goal is to have form be display flexed with labels, nice big submit button
   return (
       <div>
-          <h2>The CreateSolutionPage</h2>
-          <p>{sourceVol}</p>
-          <form onSubmit={handleSubmit}>
-            <input type='text' name='title' placeholder="Enter a Title" onChange={handleChange}/>
-            <input type='number' name='source_conc' placeholder="Source concentration"step="0.00
-            1" onChange={handleChange}/>
-            <input type='number' name='source_vol' placeholder="Source volume needed"step="0.00
-            1" disabled value={sourceVol}/>
-            <input type='decimal' name='final_conc' placeholder="Final concentration" step="0.00
-            1" onChange={handleChange}/>
-            <input type='number' name='final_vol' placeholder="Final volume"step="0.00
-            1" onChange={handleChange}/>
-            <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
-            <input type='text' name='instructions' placeholder="Instructions show here" value={
-              `Pour ${sourceVol} of source volume into ${remainderVol} solvent`
-              } />
-          </form>
+        {userID && <p>{userID}</p>}
+        <h2>The CreateSolutionPage</h2>
+        <p>{sourceVol}</p>
+        <form onSubmit={handleSubmit}>
+          <input 
+            type='text' 
+            name='title' 
+            placeholder="Enter a Title" 
+            onChange={handleChange}
+          />
+          <input 
+            type='number' 
+            name='source_conc' 
+            placeholder="Source concentration"
+            step="0.001" 
+            onChange={handleChange}
+          />
+          <input 
+            type='number' 
+            name='source_vol' 
+            placeholder="Source volume needed"
+            step="0.001" 
+            disabled value={sourceVol}
+          />
+          <input 
+            type='decimal' 
+            name='final_conc' 
+            placeholder="Final concentration" 
+            step="0.001" 
+            onChange={handleChange}
+          />
+          <input 
+            type='number' 
+            name='final_vol' 
+            placeholder="Final volume"
+            step="0.001" 
+            onChange={handleChange}
+          />
+          <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
+          <input 
+            type='text' 
+            name='instructions' 
+            placeholder="Instructions show here" 
+            value={`Pour ${sourceVol} of source volume into ${remainderVol} solvent`} 
+          />
+        </form>
     
       </div>
   )

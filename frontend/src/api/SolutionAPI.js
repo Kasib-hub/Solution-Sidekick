@@ -1,30 +1,32 @@
 // so now all of my requests need tokens, pass into function?
 // logging out is deleting the token and navigating back to sign up page.
+import { userToken } from '../helpers/helperFunctions';
 import axios from 'axios'
-
 const BASE_URL = 'http://127.0.0.1:8000/';
-const TOKEN = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+
+
 
 // add a token?
 const fetchAllSolutions = () => {
-  const data = fetch(`${BASE_URL}solution_api/`, {
+  const token = userToken()
+  return fetch(`${BASE_URL}solution_api/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${TOKEN}`
+      'Authorization': `Token ${token}`
     }
   })
     .then(res => res.json())
     .then(data => data.result)
-  return data
 }
 
 const fetchSolutionbyId = (solutionID) => {
+  const token = userToken()
   const data = fetch(`${BASE_URL}wine_api/${solutionID}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${TOKEN}`
+      'Authorization': `Token ${token}`
     }
   })
     .then(res => res.json())
@@ -33,11 +35,12 @@ const fetchSolutionbyId = (solutionID) => {
 }
 
 const createSolution = (solutionObj) => {
+  const token = userToken()
   fetch(`${BASE_URL}solution_api/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${TOKEN}`
+      'Authorization': `Token ${token}`
     },
     body: JSON.stringify(solutionObj)
   })
@@ -46,11 +49,12 @@ const createSolution = (solutionObj) => {
 
 // put request on a wine object
 const putSolutionbyId = (solutionID, updatedData) => {
+  const token = userToken()
   fetch(`${BASE_URL}solution_api/${solutionID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${TOKEN}`
+      'Authorization': `Token ${token}`
     },
     body: JSON.stringify(updatedData)
   })
@@ -59,7 +63,7 @@ const putSolutionbyId = (solutionID, updatedData) => {
 }
 
 // stores token in a cookie
-const getToken = (userData) => {
+const loginWithToken = (userData) => {
   fetch(`${BASE_URL}accounts/get-token`, {
     method: 'POST',
     headers: {
@@ -75,36 +79,29 @@ const getToken = (userData) => {
 }
 
 const getUserData = () => {
+  const TOKEN = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
   return axios.get(`${BASE_URL}accounts/get-user`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${TOKEN}`
     }
   })
+    .then(res => res.data)
+    .catch(error => console.log(error))
 }
 
-// const getUserData = () => {
-//   let userData = {}
-//   fetch(`${BASE_URL}accounts/get-user`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Token ${TOKEN}`
-//     }
-//   })
-//   .then(res => res.json())
-//   // token accessed at data.token, store in cookie
-//   .then(data => {userData = data})
-//   return userData
-// }
+// consider doing it this way so you can easily set the state  
+// useEffect(() => {
+//   getUserData().then(data => setUserID(data.user_id))
+// }, [])
+
 
 export {
   BASE_URL,
-  TOKEN,
   fetchAllSolutions,
   fetchSolutionbyId,
   createSolution,
   putSolutionbyId,
   getUserData,
-  getToken,
+  loginWithToken,
 };

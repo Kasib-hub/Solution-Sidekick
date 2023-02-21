@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { getToken } from "../api/SolutionAPI"
+import { loginWithToken } from "../api/SolutionAPI"
 
 const LoginPage = () => {
 
@@ -13,7 +13,7 @@ const LoginPage = () => {
       "password": event.target.password.value,
       "email": event.target.password.value
     }
-    getToken(userData)
+    loginWithToken(userData)
     navigate('/solution_list')
     
   }
