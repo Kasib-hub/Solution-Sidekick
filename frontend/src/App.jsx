@@ -5,6 +5,7 @@ import SolutionListPage from './pages/SolutionListPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import CreateSolutionPage from './pages/CreateSolutionPage';
+import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css'
 import NavBar from './components/NavBar'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -18,10 +19,13 @@ const App = () => {
         <NavBar />
         <Routes>
           {/* render a page then make the link on that page to something you need */}
-          <Route exact path='/'  element={<HomePage />} />
-          <Route path='/solution_list' element={<SolutionListPage />}/>
-          <Route path='/create_solution' element={<CreateSolutionPage />}/>
-          <Route path='/solution' element={<SolutionPage />}/>
+          <Route element={<PrivateRoutes />}>
+            <Route exact path='/'  element={<HomePage />} />
+            <Route path='/solution_list' element={<SolutionListPage />}/>
+            <Route path='/create_solution' element={<CreateSolutionPage />}/>
+            <Route path='/solution' element={<SolutionPage />}/>
+          </Route>
+
           <Route path='/login' element={<LoginPage />}/>
           <Route path='/signup' element={<SignupPage />}/>
           

@@ -1,5 +1,6 @@
 // so now all of my requests need tokens, pass into function?
 // logging out is deleting the token and navigating back to sign up page.
+import axios from 'axios'
 
 const BASE_URL = 'http://127.0.0.1:8000/';
 const TOKEN = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
@@ -32,7 +33,7 @@ const fetchSolutionbyId = (solutionID) => {
 }
 
 const createSolution = (solutionObj) => {
-  fetch(`${BASE_URL}solution_api`, {
+  fetch(`${BASE_URL}solution_api/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ const putSolutionbyId = (solutionID, updatedData) => {
 
 // stores token in a cookie
 const getToken = (userData) => {
-  return fetch(`${BASE_URL}accounts/get-token`, {
+  fetch(`${BASE_URL}accounts/get-token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -73,11 +74,37 @@ const getToken = (userData) => {
   })
 }
 
+const getUserData = () => {
+  return axios.get(`${BASE_URL}accounts/get-user`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${TOKEN}`
+    }
+  })
+}
+
+// const getUserData = () => {
+//   let userData = {}
+//   fetch(`${BASE_URL}accounts/get-user`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Token ${TOKEN}`
+//     }
+//   })
+//   .then(res => res.json())
+//   // token accessed at data.token, store in cookie
+//   .then(data => {userData = data})
+//   return userData
+// }
+
 export {
   BASE_URL,
+  TOKEN,
   fetchAllSolutions,
   fetchSolutionbyId,
   createSolution,
   putSolutionbyId,
+  getUserData,
   getToken,
 };

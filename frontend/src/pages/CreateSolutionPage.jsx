@@ -1,6 +1,7 @@
 import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
 import { createSolution } from "../api/SolutionAPI"
+import { getUserData } from "../api/SolutionAPI"
 
 // each solution needs a title, measurements, and resulting instructions
 const CreateSolutionPage = () => {
@@ -22,6 +23,7 @@ const CreateSolutionPage = () => {
   useEffect(() => {
     setRemainderVol(inputs.final_vol - sourceVol)
   }, [inputs.final_vol, sourceVol])
+
 
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
@@ -52,10 +54,14 @@ const CreateSolutionPage = () => {
           <p>{sourceVol}</p>
           <form onSubmit={handleSubmit}>
             <input type='text' name='title' placeholder="Enter a Title" onChange={handleChange}/>
-            <input type='number' name='source_conc' placeholder="Source concentration"step="0.001" onChange={handleChange}/>
-            <input type='number' name='source_vol' placeholder="Source volume needed"step="0.001" disabled value={sourceVol}/>
-            <input type='number' name='final_conc' placeholder="Final concentration"step="0.001" onChange={handleChange}/>
-            <input type='number' name='final_vol' placeholder="Final volume"step="0.001" onChange={handleChange}/>
+            <input type='number' name='source_conc' placeholder="Source concentration"step="0.00
+            1" onChange={handleChange}/>
+            <input type='number' name='source_vol' placeholder="Source volume needed"step="0.00
+            1" disabled value={sourceVol}/>
+            <input type='number' name='final_conc' placeholder="Final concentration"step="0.00
+            1" onChange={handleChange}/>
+            <input type='number' name='final_vol' placeholder="Final volume"step="0.00
+            1" onChange={handleChange}/>
             <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
             <input type='text' name='instructions' placeholder="Instructions show here" value={
               `Pour ${sourceVol} of source volume into ${remainderVol} solvent`

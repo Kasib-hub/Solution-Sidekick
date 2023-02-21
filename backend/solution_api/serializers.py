@@ -31,8 +31,7 @@ class SolutionSerializer(ModelSerializer):
             source_conc=validated_data['source_conc'],
             source_vol=validated_data['source_vol'],
             final_conc=validated_data['final_conc'],
-            final_vol=validated_data['final_vol'],
-            creator=validated_data['creator']
+            final_vol=validated_data['final_vol']
         )
         return instance
         

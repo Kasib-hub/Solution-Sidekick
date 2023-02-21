@@ -1,7 +1,14 @@
 import NavBarCSS from './NavBar.module.css'
 import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
+import { useContext, useState, useEffect } from 'react'
+import { getUserData } from '../api/SolutionAPI'
+
+
 
 const NavBar = () => {
+
+
 
   return (
     <div className={NavBarCSS.navBar}>

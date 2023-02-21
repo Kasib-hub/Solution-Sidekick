@@ -18,8 +18,10 @@ class SolutionsView(APIView):
 
     def post(self, request):
         solution = request.data
+        solution['creator_id'] = request.user.id
         serializer = SolutionSerializer(data=solution)
         if serializer.is_valid(raise_exception=True):
+            
             solution_saved = serializer.save()
         return Response({"result": f"solution {solution_saved.title}"})
 
