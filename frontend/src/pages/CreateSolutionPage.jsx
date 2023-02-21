@@ -15,15 +15,22 @@ const CreateSolutionPage = () => {
   })
   const [sourceVol, setsourceVol] = useState()
   const [remainderVol, setRemainderVol] = useState()
+  const [userID ,setUserID] = useState()
 
+  // calculate needed solute volume in realtime
   useEffect(() => {
     setsourceVol(inputs.final_conc * inputs.final_vol / inputs.source_conc)
   }, [inputs.final_conc, inputs.final_vol, inputs.source_conc])
   
+  // give the remainder volume needed to reach final volume in realtime
   useEffect(() => {
     setRemainderVol(inputs.final_vol - sourceVol)
   }, [inputs.final_vol, sourceVol])
 
+  // retreive user id to make the post request
+  useEffect(() => {
+    getUserData().then(res => setUserID(res.data.user_id))
+  }, [])
 
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
@@ -36,6 +43,7 @@ const CreateSolutionPage = () => {
       "final_vol": event.target.final_vol.value,
       "title": event.target.title.value,
       "instructions": event.target.instructions.value,
+      "creator": userID
     }
     createSolution(solutionObj)
   }
@@ -58,7 +66,7 @@ const CreateSolutionPage = () => {
             1" onChange={handleChange}/>
             <input type='number' name='source_vol' placeholder="Source volume needed"step="0.00
             1" disabled value={sourceVol}/>
-            <input type='number' name='final_conc' placeholder="Final concentration"step="0.00
+            <input type='decimal' name='final_conc' placeholder="Final concentration" step="0.00
             1" onChange={handleChange}/>
             <input type='number' name='final_vol' placeholder="Final volume"step="0.00
             1" onChange={handleChange}/>
