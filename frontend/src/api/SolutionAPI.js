@@ -22,7 +22,7 @@ const fetchAllSolutions = () => {
 
 const fetchSolutionbyId = (solutionID) => {
   const token = userToken()
-  const data = fetch(`${BASE_URL}wine_api/${solutionID}`, {
+  return fetch(`${BASE_URL}solution_api/${solutionID}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +31,6 @@ const fetchSolutionbyId = (solutionID) => {
   })
     .then(res => res.json())
     .then(data => data.result)
-  return data
 }
 
 const createSolution = (solutionObj) => {

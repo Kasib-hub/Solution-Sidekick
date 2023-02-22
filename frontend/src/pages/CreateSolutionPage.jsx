@@ -59,7 +59,7 @@ const CreateSolutionPage = () => {
       <div>
         {userID && <p>{userID}</p>}
         <h2>The CreateSolutionPage</h2>
-        <p>{sourceVol}</p>
+        {sourceVol > 0 && <p>{sourceVol}</p>}
         <form onSubmit={handleSubmit}>
           <input 
             type='text' 

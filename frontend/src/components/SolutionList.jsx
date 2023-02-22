@@ -11,7 +11,7 @@ const SolutionList = ({solutions}) => {
             <div key={idx}>
               <h3>{solution.title}</h3>
               <p>by {solution.creator_name} - {solution.instructions}</p>
-              <Link to={`#`}>Edit Solution</Link>
+              <Link to={`/solution/${solution.id}`}>Edit Solution</Link>
               <hr />
             </div>  
           )

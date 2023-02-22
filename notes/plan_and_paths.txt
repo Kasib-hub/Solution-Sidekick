@@ -39,3 +39,5 @@ For those of you who like lists, here are the official requirements for Personal
   Make it look good
 If you have an idea that doesn't conform with the above, talk to me and we'll work something out.
 Once you have been given the OK by an instructor, please fill out this spreadsheet:
+
+* I'm trying to make an edit page but it should look nearly the same as the createPage or just make a createSol component and EditSol component

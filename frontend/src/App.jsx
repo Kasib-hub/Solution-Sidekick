@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import HomePage from './pages/HomePage';
-import SolutionPage from './pages/SolutionPage';
+import SolutionEditPage from './pages/SolutionEditPage';
 import SolutionListPage from './pages/SolutionListPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -24,7 +24,7 @@ const App = () => {
             <Route exact path='/'  element={<HomePage />} />
             <Route path='/solution_list' element={<SolutionListPage />}/>
             <Route path='/create_solution' element={<CreateSolutionPage />}/>
-            <Route path='/solution' element={<SolutionPage />}/>
+            <Route path='/solution/:solutionID' element={<SolutionEditPage />}/>
           </Route>
 
           <Route path='/login' element={<LoginPage />}/>
