@@ -58,7 +58,18 @@ const putSolutionbyId = (solutionID, updatedData) => {
     body: JSON.stringify(updatedData)
   })
     .then(res => res.ok ? console.log('put success') : console.log('put no good'))
+}
 
+const deleteSolutionbyId = (solutionID) => {
+  const token = userToken()
+  return axios.delete(`${BASE_URL}solution_api/${solutionID}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    }
+  })
+    .then(res => res.data)
+    .catch(error => alert(error))
 }
 
 // stores token in a cookie
@@ -78,11 +89,11 @@ const loginWithToken = (userData) => {
 }
 
 const getUserData = () => {
-  const TOKEN = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+  const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
   return axios.get(`${BASE_URL}accounts/get-user`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Token ${TOKEN}`
+      'Authorization': `Token ${token}`
     }
   })
     .then(res => res.data)
@@ -101,6 +112,7 @@ export {
   fetchSolutionbyId,
   createSolution,
   putSolutionbyId,
+  deleteSolutionbyId,
   getUserData,
   loginWithToken,
 };

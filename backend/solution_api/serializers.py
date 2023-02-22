@@ -2,6 +2,7 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from .models import Solution, Comment, Like
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # class WineSerializer(serializers.Serializer):
 #     wine_name = serializers.CharField(max_length=120)
@@ -13,6 +14,7 @@ from django.contrib.auth.models import User
 class SolutionSerializer(ModelSerializer):
     # define the new serializer property with method field
     creator_name = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
 
     # make sure to add the new property to fields
     class Meta:
@@ -23,6 +25,9 @@ class SolutionSerializer(ModelSerializer):
     def get_creator_name(self, obj):
         creator = obj.creator
         return creator.username
+
+    def get_created_at(self, obj):
+        return obj.created_at.strftime('%I:%M%p - %B %d, %Y')
 
     def create(self, validated_data):
         instance = Solution.objects.create(
