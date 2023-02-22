@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import { fetchSolutionbyId } from '../api/SolutionAPI'
+import EditSolution from '../components/EditSolution'
 
 const SolutionEditPage = () => {
 
@@ -17,10 +18,7 @@ const SolutionEditPage = () => {
 
   return (
     <div>
-      <h3>Edit {solution.title}</h3>
-      <form>
-        <input type="number" name="" id="" placeholder="C1"/>
-      </form>
+      <EditSolution solution={solution} />
     </div>
     
   )
