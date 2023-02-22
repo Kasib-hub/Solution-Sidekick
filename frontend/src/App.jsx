@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import CreateSolutionPage from './pages/CreateSolutionPage';
 import LogoutPage from './pages/LogoutPage';
+import DeleteSolutionPage from './pages/DeleteSolutionPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css'
 import NavBar from './components/NavBar'
@@ -25,6 +26,7 @@ const App = () => {
             <Route path='/solution_list' element={<SolutionListPage />}/>
             <Route path='/create_solution' element={<CreateSolutionPage />}/>
             <Route path='/solution/:solutionID' element={<SolutionEditPage />}/>
+            <Route path='/solution/:solutionID/delete' element={<DeleteSolutionPage />}/>
           </Route>
 
           <Route path='/login' element={<LoginPage />}/>

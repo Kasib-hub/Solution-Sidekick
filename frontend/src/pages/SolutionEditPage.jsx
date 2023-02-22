@@ -19,6 +19,7 @@ const SolutionEditPage = () => {
   return (
     <div>
       <CreateEditSolution solution={solution} />
+      <button></button>
     </div>
     
   )

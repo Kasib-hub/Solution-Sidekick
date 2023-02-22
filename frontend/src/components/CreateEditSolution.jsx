@@ -2,6 +2,8 @@ import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
 import { createSolution } from "../api/SolutionAPI"
 import { getUserData } from "../api/SolutionAPI"
+import DeleteSolutionPage from "../pages/DeleteSolutionPage"
+import { Link } from "react-router-dom"
 
 // needs to take in the single solution object as a prop
 const CreateEditSolution = ({solution}) => {
@@ -111,7 +113,7 @@ const CreateEditSolution = ({solution}) => {
             defaultValue={solution.instructions || ''} 
           />
         </form>
-    
+        <button><Link to={`/solution/${solution.id}/delete`}>DELETE</Link></button>
       </div>
   )
 }
