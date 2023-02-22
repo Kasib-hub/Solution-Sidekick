@@ -4,7 +4,7 @@ import { createSolution } from "../api/SolutionAPI"
 import { getUserData } from "../api/SolutionAPI"
 
 // needs to take in the single solution object as a prop
-const EditSolution = ({solution}) => {
+const CreateEditSolution = ({solution}) => {
 
   const [inputs, setInputs] = useState({
     title: "",
@@ -116,4 +116,4 @@ const EditSolution = ({solution}) => {
   )
 }
 
-export default EditSolution
+export default CreateEditSolution

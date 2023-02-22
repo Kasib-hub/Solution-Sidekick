@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 import { fetchSolutionbyId } from '../api/SolutionAPI'
-import EditSolution from '../components/EditSolution'
+import CreateEditSolution from '../components/CreateEditSolution'
 
 const SolutionEditPage = () => {
 
@@ -18,7 +18,7 @@ const SolutionEditPage = () => {
 
   return (
     <div>
-      <EditSolution solution={solution} />
+      <CreateEditSolution solution={solution} />
     </div>
     
   )
