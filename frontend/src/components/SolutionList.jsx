@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import { fetchAllSolutions } from "../api/SolutionAPI"
+import SolutionListCSS from './SolutionList.css'
 
-const SolutionList = ({solutions}) => {
-  
+const SolutionList = ({solutions, userID}) => {
+
   return (
     <div>
       {
@@ -11,7 +11,13 @@ const SolutionList = ({solutions}) => {
             <div key={idx}>
               <h3>{solution.title}</h3>
               <p>by {solution.creator_name} - {solution.instructions}</p>
-              <Link to={`/solution/${solution.id}`}>Edit Solution</Link>
+              <div className="sol-links">
+                <Link to={`/solution/${solution.id}`}>View Solution</Link> 
+                {
+                  solution.creator === userID 
+                  && <div className="sol-link-edit"><span> | </span><Link to='#'>Edit Solution</Link></div>
+                }
+              </div>
               <hr />
             </div>  
           )

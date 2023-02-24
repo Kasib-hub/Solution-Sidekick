@@ -1,13 +1,15 @@
 import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
-import { createSolution } from "../api/SolutionAPI"
+import { createSolution, putSolutionbyId } from "../api/SolutionAPI"
 import { getUserData } from "../api/SolutionAPI"
-import DeleteSolutionPage from "../pages/DeleteSolutionPage"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 // needs to take in the single solution object as a prop
 const CreateEditSolution = ({solution}) => {
-
+  
+  const navigate = useNavigate()
+  
   const [inputs, setInputs] = useState({
     title: "",
     source_conc: 0,
@@ -46,9 +48,9 @@ const CreateEditSolution = ({solution}) => {
       "instructions": event.target.instructions.value,
       "creator": userID
     }
-    createSolution(solutionObj)
+    solution.title ? putSolutionbyId(solution.id, solutionObj) : createSolution(solutionObj)
+    navigate('/solution_list')
   }
-
   // update formula parameters in a react way
   const handleChange = (event) => {
     setInputs((prevState) => ({
@@ -63,6 +65,7 @@ const CreateEditSolution = ({solution}) => {
         {solution.title ? <h2>Edit Solution</h2> : <h2>Create A Solution</h2>}
         {sourceVol > 0 && <p>{sourceVol}</p>}
         <form onSubmit={handleSubmit}>
+          <label for='title'>Title</label>
           <input 
             type='text' 
             name='title' 
@@ -70,6 +73,7 @@ const CreateEditSolution = ({solution}) => {
             onChange={handleChange}
             defaultValue={solution.title || ''}
           />
+          <label for='source_conc'>Source Concentration</label>
           <input 
             type='number' 
             name='source_conc' 
@@ -78,6 +82,7 @@ const CreateEditSolution = ({solution}) => {
             onChange={handleChange}
             defaultValue={solution.source_conc|| ''}
           />
+          <label for='source_vol'>Source Volume</label>
           <input 
             type='number' 
             name='source_vol' 
@@ -85,9 +90,10 @@ const CreateEditSolution = ({solution}) => {
             step="0.001" 
             onChange={handleChange}
             disabled defaultValue={solution.source_vol || ''}
-            value={sourceVol}
+            value={sourceVol || solution.source_vol}
             // defaultValue={solution.source_vol || ''}
           />
+          <label for='final_conc'>Final Concentration</label>
           <input 
             type='decimal' 
             name='final_conc' 
@@ -96,6 +102,7 @@ const CreateEditSolution = ({solution}) => {
             onChange={handleChange}
             defaultValue={solution.final_conc || ''}
           />
+          <label for='final_vol'>Final Volume</label>
           <input 
             type='number' 
             name='final_vol' 
@@ -105,12 +112,13 @@ const CreateEditSolution = ({solution}) => {
             defaultValue={solution.final_vol || ''}
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
+          <label for='instructions'>Instructions</label>
           <input 
             type='text' 
             name='instructions' 
             placeholder="Instructions show here" 
-            // value={`Pour ${sourceVol} of source volume into ${remainderVol} solvent`}
-            defaultValue={solution.instructions || ''} 
+            disabled defaultValue={solution.instructions || ''} 
+            value={solution.instructions || `Pour ${sourceVol} of source volume into ${remainderVol} of solvent`}
           />
         </form>
         <button><Link to={`/solution/${solution.id}/delete`}>DELETE</Link></button>

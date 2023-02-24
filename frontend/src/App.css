@@ -63,3 +63,20 @@
 .submitBtn:active {
   background-color: var(--violet);
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+form input {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.sol-links {
+  display: flex;
+  justify-content: center;
+}

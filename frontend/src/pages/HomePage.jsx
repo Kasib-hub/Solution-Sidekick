@@ -1,10 +1,14 @@
 import star from '../assets/star.svg'
 import HomePageCSS from './HomePage.module.css'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 
 const HomePage = () => {
-    
+
+  
+
+
   return (
       <div>
           <h2>The HomePage</h2>
