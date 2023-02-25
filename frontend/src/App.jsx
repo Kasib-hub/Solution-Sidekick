@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage';
 import CreateSolutionPage from './pages/CreateSolutionPage';
 import LogoutPage from './pages/LogoutPage';
 import DeleteSolutionPage from './pages/DeleteSolutionPage';
+import SolutionDetailPage from './pages/SolutionDetailPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css'
 import NavBar from './components/NavBar'
@@ -25,7 +26,8 @@ const App = () => {
             <Route exact path='/'  element={<HomePage />} />
             <Route path='/solution_list' element={<SolutionListPage />}/>
             <Route path='/create_solution' element={<CreateSolutionPage />}/>
-            <Route path='/solution/:solutionID' element={<SolutionEditPage />}/>
+            <Route path='/solution/:solutionID' element={<SolutionDetailPage/>}/>
+            <Route path='/solution/:solutionID/edit' element={<SolutionEditPage  />}/>
             <Route path='/solution/:solutionID/delete' element={<DeleteSolutionPage />}/>
           </Route>
 

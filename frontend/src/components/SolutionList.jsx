@@ -15,7 +15,10 @@ const SolutionList = ({solutions, userID}) => {
                 <Link to={`/solution/${solution.id}`}>View Solution</Link> 
                 {
                   solution.creator === userID 
-                  && <div className="sol-link-edit"><span> | </span><Link to='#'>Edit Solution</Link></div>
+                  && <div className="sol-link-edit">
+                      <span> | </span>
+                      <Link to={`/solution/${solution.id}/edit`}>Edit Solution</Link>
+                    </div>
                 }
               </div>
               <hr />
@@ -23,10 +26,8 @@ const SolutionList = ({solutions, userID}) => {
           )
         })
       }
-    </div>
-    
+    </div> 
   )
-
 }
 
 export default SolutionList
