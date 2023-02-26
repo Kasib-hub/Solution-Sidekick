@@ -4,6 +4,9 @@ import { fetchSolutionbyId, getWikiArticle } from '../api/SolutionAPI'
 import { Link } from 'react-router-dom'
 import './SolutionDetailPage.css'
 import Table from 'react-bootstrap/Table';
+import Spinner from "../assets/Spinner.svg"
+import LoadingSpinner from '../components/LoadingSpinner'
+
 
 // here is where the api calls will go
 const SolutionDetailPage = () => {
@@ -12,6 +15,7 @@ const SolutionDetailPage = () => {
 
   const [solution, setSolution] = useState()
   const [wikiArticle, setWikiArticle] = useState()
+  const [clicked, setClicked] = useState(false)
 
   // make call to fetch by id
   useEffect(() => {
@@ -21,13 +25,13 @@ const SolutionDetailPage = () => {
   // I also need to make another call to my backend that will make a call to the external api, make two urls - wiki and web
   const handleClick = () => {
     getWikiArticle(solution.title).then(data => setWikiArticle(data))
+    setClicked(true)
   }
-    
-  
 
   if (!solution) {return <h2>Loading...</h2>}
   return (
       <div className='detail'>
+        
         <h2>{solution.title}</h2>
         <p className='creator'>by {solution.creator_name} at {solution.created_at}</p>
         <Table striped className='formula-values'>
@@ -57,7 +61,7 @@ const SolutionDetailPage = () => {
         <div className='instructions'>
           <p>{solution.instructions}</p>
           <button onClick={handleClick}><h3>Did you know?</h3></button>
-          <p>{wikiArticle}</p>
+          {!clicked ? <p></p> : <LoadingSpinner wikiArticle={wikiArticle}/>}
         </div>
           <Link to={`/solution/${solution.id}/delete`}><button className='submitBtn'>DELETE</button></Link>
       </div>

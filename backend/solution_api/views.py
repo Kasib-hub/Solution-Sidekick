@@ -110,7 +110,7 @@ class ThirdPartyView(APIView):
         clean_search = ''
         search = '_'.join(request.data['data'].split(' '))
         # now that I have solution title, make the first call to get an appropriate title for the wiki
-        search_res = requests.get(f'https://serpapi.com/search.json?engine=duckduckgo&q={search}_wiki&kl=us-en&api_key={api_key}')
+        search_res = requests.get(f'https://serpapi.com/search.json?engine=duckduckgo&q={search}_blood_wiki&kl=us-en&api_key={api_key}')
 
         if search_res.status_code == 200:
             body = search_res.json()
