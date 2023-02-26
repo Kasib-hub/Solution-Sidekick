@@ -90,7 +90,7 @@ const loginWithToken = (userData) => {
 }
 
 const getUserData = () => {
-  const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+  const token = userToken()
   return axios.get(`${BASE_URL}accounts/get-user`, {
     headers: {
       'Content-Type': 'application/json',
@@ -101,16 +101,17 @@ const getUserData = () => {
     .catch(error => console.log(error))
 }
 
-const wikiArticle = (search) => {
-  return axios.get(`${PRE_WIKI}${search}${POST_WIKI}`)
-    .then( )
+const getWikiArticle = (search) => {
+  const token = userToken()
+  return axios.post(`${BASE_URL}solution_api/third_party`, {"data": search}, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    }
+  })
+    .then(res => res.data)
+    .catch(err => alert(err))
 }
-
-// consider doing it this way so you can easily set the state  
-// useEffect(() => {
-//   getUserData().then(data => setUserID(data.user_id))
-// }, [])
-
 
 export {
   BASE_URL,
@@ -119,6 +120,7 @@ export {
   createSolution,
   putSolutionbyId,
   deleteSolutionbyId,
+  getWikiArticle,
   getUserData,
   loginWithToken,
 };

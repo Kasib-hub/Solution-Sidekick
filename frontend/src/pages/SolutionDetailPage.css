@@ -1,0 +1,29 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.creator {
+  color: gray;
+}
+
+Table {
+  width: 40%;
+  text-align: center;
+  font-size: 24px;
+}
+
+.formula-values th{
+  padding: 0 20px;
+}
+
+.overlay {
+  color: var(--gray);
+  padding: 3rem;
+}
+
+.instructions {
+  width: 40%;
+}

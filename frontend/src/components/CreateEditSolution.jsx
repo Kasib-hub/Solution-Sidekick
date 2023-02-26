@@ -78,7 +78,7 @@ const CreateEditSolution = ({solution}) => {
             type='number' 
             name='source_conc' 
             placeholder="Source concentration"
-            step="0.001" 
+            step="any" 
             onChange={handleChange}
             defaultValue={solution.source_conc|| ''}
           />
@@ -87,7 +87,7 @@ const CreateEditSolution = ({solution}) => {
             type='number' 
             name='source_vol' 
             placeholder={solution.source_vol}
-            step="0.001" 
+            step="any" 
             onChange={handleChange}
             disabled defaultValue={solution.source_vol || ''}
             value={sourceVol || solution.source_vol}
@@ -98,7 +98,7 @@ const CreateEditSolution = ({solution}) => {
             type='decimal' 
             name='final_conc' 
             placeholder="Final concentration" 
-            step="0.001" 
+            step="any" 
             onChange={handleChange}
             defaultValue={solution.final_conc || ''}
           />
@@ -107,7 +107,7 @@ const CreateEditSolution = ({solution}) => {
             type='number' 
             name='final_vol' 
             placeholder="Final volume"
-            step="0.001" 
+            step="any" 
             onChange={handleChange}
             defaultValue={solution.final_vol || ''}
           />
@@ -121,7 +121,7 @@ const CreateEditSolution = ({solution}) => {
             value={solution.instructions || `Pour ${sourceVol} of source volume into ${remainderVol} of solvent`}
           />
         </form>
-        <button><Link to={`/solution/${solution.id}/delete`}>DELETE</Link></button>
+        
       </div>
   )
 }

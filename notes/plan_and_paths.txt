@@ -35,7 +35,7 @@ WikiAPI EX:
   https://en.wikipedia.org/w/api.php?action=opensearch&search=<query>&namespace=0&limit=10&format=json&formatversion=2&redirects=resolve&category=Science%7CMedicine
 
   - serpAPI - replace fya with search term, 
-  https://serpapi.com/search.json?engine=duckduckgo&q=wiki_fya_blood&kl=us-en&api_key={apiKey}
+  https://serpapi.com/search.json?engine=duckduckgo&q={search}wiki&kl=us-en&api_key={apiKey}
 
 REQUIREMENTS
 A few of you have already talked with me about your projects.

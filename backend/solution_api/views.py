@@ -1,9 +1,12 @@
+import requests
+from dotenv import load_dotenv
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from .serializers import SolutionSerializer, CommentSerializer, LikeSerializer     # we create the serializers
 from .models import Solution, Comment, Like
-
+load_dotenv()
+import os
 
 class SolutionsView(APIView):
 
@@ -99,3 +102,30 @@ class LikesView(APIView):
         like = get_object_or_404(Like.objects.all(), pk=like_pk)
         like.delete()
         return Response({"result": f"like id {like_pk} deleted"},status=204)
+
+class ThirdPartyView(APIView):
+
+    def post(self, request):
+        api_key = os.environ.get('API_KEY')
+        clean_search = ''
+        search = '_'.join(request.data['data'].split(' '))
+        # now that I have solution title, make the first call to get an appropriate title for the wiki
+        search_res = requests.get(f'https://serpapi.com/search.json?engine=duckduckgo&q={search}_wiki&kl=us-en&api_key={api_key}')
+
+        if search_res.status_code == 200:
+            body = search_res.json()
+            clean_search = body['organic_results'][0]['link'].split('/')[-1]
+        else:
+            return Response({'Error': 'error occured'})
+
+        print('this is clean_+_+_+_+_+', clean_search)
+        res = requests.get(f'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles={clean_search}&format=json&exsentences=5&explaintext=1&formatversion=2&origin=*')
+
+        if res.status_code == 200:
+            body = res.json()
+            api_text = body['query']['pages'][0]['extract']
+            # from here I'd probably randomize a sentence
+            return Response(api_text)
+        # return response from other api
+        else:
+            return Response({'Error': 'error occured'})
