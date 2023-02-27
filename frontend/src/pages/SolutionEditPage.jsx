@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import { fetchSolutionbyId } from '../api/SolutionAPI'
 import CreateEditSolution from '../components/CreateEditSolution'
 
 const SolutionEditPage = () => {
-
+  const userID = Number(localStorage.getItem('userID'))
+  const navigate = useNavigate()
   let {solutionID} = useParams()
 
   const [solution, setSolution] = useState()
@@ -14,7 +15,14 @@ const SolutionEditPage = () => {
     fetchSolutionbyId(solutionID).then(data => setSolution(data))
   }, [])
 
+
+
   if (!solution) {return <h2>Loading...</h2>}
+
+  else if (userID !== solution.creator) {
+    alert('Error: you do not have permission to modify solution')
+    navigate('/solution_list')
+  }
 
   return (
     <div>

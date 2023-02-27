@@ -16,7 +16,7 @@ const SignupPage = () => {
       "password": event.target.password.value,
       "email": event.target.email.value
     }
-  
+    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC path=/;`
     signUp(userData)
   }
 
