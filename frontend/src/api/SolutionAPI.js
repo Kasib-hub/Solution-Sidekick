@@ -86,6 +86,7 @@ const loginWithToken = (userData) => {
   // token accessed at data.token, store in cookie
   .then(data => {
     document.cookie = `token=${data.token}; path=/;`
+    localStorage.setItem('userID', String(data.user_id))
   })
 }
 

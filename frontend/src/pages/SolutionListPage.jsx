@@ -5,19 +5,14 @@ import SolutionList from "../components/SolutionList"
 const SolutionListPage = () => {
 
   const [solutions, setSolutions] = useState()
-  const [userID , setUserID] = useState()
-
+  const userID = localStorage.getItem('userID')
   useEffect(() => {
     fetchAllSolutions().then(data => {setSolutions(data)})
   }, [])
 
-  useEffect(() => {
-    getUserData().then(data => setUserID(data.user_id))
-  }, [])
-
   return (
     <div>
-      <h3>Welcome!</h3>
+      <h3>Welcome! {userID}</h3>
       <h2>Solution List</h2>
       {!solutions ? <p></p> : <SolutionList solutions={solutions} userID={userID}/>}
     </div>
