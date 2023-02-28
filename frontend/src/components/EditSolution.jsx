@@ -1,21 +1,20 @@
 import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
-import { createSolution } from "../api/SolutionAPI"
+import { putSolutionbyId } from "../api/SolutionAPI"
 import { useNavigate } from "react-router-dom"
 
 // needs to take in the single solution object as a prop
-const EditSolution = () => {
+const EditSolution = ({solution}) => {
   
   const navigate = useNavigate()
-  const userID = localStorage.getItem('userID')
   const [inputs, setInputs] = useState({
-    source_conc: 0,
-    final_conc: 0,
-    final_vol: 0,
+    source_conc: solution.source_conc,
+    final_conc: solution.final_conc,
+    final_vol: solution.final_vol
   })
-  const [sourceVol, setsourceVol] = useState(0)
+  const [sourceVol, setsourceVol] = useState(solution.source_vol)
   const [remainderVol, setRemainderVol] = useState(0)
-  const [instructions, setInstructions] = useState()
+  const [instructions, setInstructions] = useState(solution.instructions)
 
   // calculate needed solute volume in realtime
   useEffect(() => {
@@ -27,9 +26,12 @@ const EditSolution = () => {
     setRemainderVol(inputs.final_vol - sourceVol)
   }, [inputs.final_vol, sourceVol])
 
-  // create the instructions text
+  // create the instructions text but check for NaN values
   useEffect(() => {
-    setInstructions(`Pour ${String(sourceVol)} of source volume into ${String(remainderVol)} of solvent`)
+    isNaN(sourceVol) || isNaN(remainderVol) 
+    ? setInstructions(solution.instructions)
+    : setInstructions(`Pour ${String(sourceVol)} of source volume into ${String(remainderVol)} of solvent`)
+    
   }, [sourceVol, remainderVol])
 
 
@@ -43,9 +45,9 @@ const EditSolution = () => {
       "final_vol": event.target.final_vol.value,
       "title": event.target.title.value,
       "instructions": event.target.instructions.value,
-      "creator": userID
+      "creator": solution.creator
     }
-    createSolution(solutionObj)
+    putSolutionbyId(solution.id, solutionObj)
     navigate('/solution_list')
   }
   // update formula parameters in a react way
@@ -58,7 +60,7 @@ const EditSolution = () => {
   // goal is to have form be display flexed with labels, nice big submit button
   return (
       <div>
-        <h2>Edit The Solution</h2>
+        <h2>EDIT A Solution</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='title'>Title</label>
           <input 
@@ -66,6 +68,7 @@ const EditSolution = () => {
             name='title' 
             placeholder="Enter a Title" 
             onChange={handleChange}
+            value={solution.title}
           />
           <label htmlFor='source_conc'>Source Concentration</label>
           <input 
@@ -74,6 +77,7 @@ const EditSolution = () => {
             placeholder="Source concentration"
             step="any" 
             onChange={handleChange}
+            value={inputs.source_conc}
           />
           <label htmlFor='source_vol'>Source Volume</label>
           <input 
@@ -91,6 +95,7 @@ const EditSolution = () => {
             placeholder="Final concentration" 
             step="any" 
             onChange={handleChange}
+            value={inputs.final_conc}
           />
           <label htmlFor='final_vol'>Final Volume</label>
           <input 
@@ -99,6 +104,7 @@ const EditSolution = () => {
             placeholder="Final volume"
             step="any" 
             onChange={handleChange}
+            value={inputs.final_vol}
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
           <label htmlFor='instructions'>Instructions</label>
@@ -107,6 +113,7 @@ const EditSolution = () => {
             name='instructions' 
             placeholder="Instructions show here"
             value={instructions}
+            readOnly
           />
         </form>
         
