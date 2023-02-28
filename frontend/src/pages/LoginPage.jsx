@@ -14,10 +14,13 @@ const LoginPage = () => {
       "password": event.target.password.value,
       "email": event.target.password.value
     }
+    
     loginWithToken(userData)
+
     
     // set timeout to give app time to retrieve new token
     setTimeout(() => {navigate('/solution_list')}, 500)
+    // window.location.reload();
     
     
   }

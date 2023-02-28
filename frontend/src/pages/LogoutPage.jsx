@@ -10,6 +10,7 @@ const LogoutPage = () => {
     document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC path=/;`
     localStorage.removeItem('userID')
     localStorage.removeItem('username')
+    window.location.reload();
     navigate('/login')
   }
 

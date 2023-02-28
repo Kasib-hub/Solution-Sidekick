@@ -1,7 +1,9 @@
 import NavBarCSS from './NavBar.module.css'
 import { Link } from 'react-router-dom'
 
-const NavBar = ({username}) => {
+const NavBar = () => {
+
+  const username = localStorage.getItem('username')
 
   return (
     <div className={NavBarCSS.navBar}>
