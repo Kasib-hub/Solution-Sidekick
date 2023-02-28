@@ -6,10 +6,11 @@ const LogoutPage = () => {
   const navigate = useNavigate()
 
   // navigating after a signup, but I also want a token and a post to the 
-  const handleClick = (event) => {
+  const handleClick = () => {
     document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC path=/;`
+    localStorage.removeItem('userID')
+    localStorage.removeItem('username')
     navigate('/login')
-    
   }
 
   return (

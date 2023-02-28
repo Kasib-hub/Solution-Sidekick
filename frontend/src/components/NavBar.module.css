@@ -1,7 +1,14 @@
 .navBar {
-  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  width: 100vw;
+  text-align: right;
+  background-color: var(--corn);
+  padding: 14px;
+}
+
+.login_as {
   text-align: left;
   background-color: var(--corn);
-  padding: 5px;
-  border-radius: 10px;
 }

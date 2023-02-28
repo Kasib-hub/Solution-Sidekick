@@ -65,7 +65,7 @@ const CreateEditSolution = ({solution}) => {
         {solution.title ? <h2>Edit Solution</h2> : <h2>Create A Solution</h2>}
         {sourceVol > 0 && <p>{sourceVol}</p>}
         <form onSubmit={handleSubmit}>
-          <label for='title'>Title</label>
+          <label htmlFor='title'>Title</label>
           <input 
             type='text' 
             name='title' 
@@ -73,7 +73,7 @@ const CreateEditSolution = ({solution}) => {
             onChange={handleChange}
             defaultValue={solution.title || ''}
           />
-          <label for='source_conc'>Source Concentration</label>
+          <label htmlFor='source_conc'>Source Concentration</label>
           <input 
             type='number' 
             name='source_conc' 
@@ -82,7 +82,7 @@ const CreateEditSolution = ({solution}) => {
             onChange={handleChange}
             defaultValue={solution.source_conc|| ''}
           />
-          <label for='source_vol'>Source Volume</label>
+          <label htmlFor='source_vol'>Source Volume</label>
           <input 
             type='number' 
             name='source_vol' 
@@ -93,7 +93,7 @@ const CreateEditSolution = ({solution}) => {
             value={sourceVol || solution.source_vol}
             // defaultValue={solution.source_vol || ''}
           />
-          <label for='final_conc'>Final Concentration</label>
+          <label htmlFor='final_conc'>Final Concentration</label>
           <input 
             type='decimal' 
             name='final_conc' 
@@ -102,7 +102,7 @@ const CreateEditSolution = ({solution}) => {
             onChange={handleChange}
             defaultValue={solution.final_conc || ''}
           />
-          <label for='final_vol'>Final Volume</label>
+          <label htmlFor='final_vol'>Final Volume</label>
           <input 
             type='number' 
             name='final_vol' 
@@ -112,7 +112,7 @@ const CreateEditSolution = ({solution}) => {
             defaultValue={solution.final_vol || ''}
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
-          <label for='instructions'>Instructions</label>
+          <label htmlFor='instructions'>Instructions</label>
           <input 
             type='text' 
             name='instructions' 

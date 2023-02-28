@@ -17,17 +17,21 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 const App = () => {
 
   const [solutions, setSolutions] = useState()
+  const [userID, setUserID] = useState()
+  const [username, setUsername] = useState()
 
   useEffect(() => {
     fetchAllSolutions().then(data => setSolutions(data))
-  }, [])
+    setUserID(Number(localStorage.getItem('userID')))
+    setUsername(localStorage.getItem('username'))
+  }, [userID])
 
 
   return (
     <div className="App">
       
       <Router>
-        <NavBar />
+        <NavBar username={username}/>
         <Routes>
           {/* render a page then make the link on that page to something you need */}
           <Route element={<PrivateRoutes />}>

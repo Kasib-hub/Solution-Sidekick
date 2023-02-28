@@ -1,15 +1,12 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
   text-align: center;
 }
 
 .App {
-  border: 2px solid var(--violet);
-  border-radius: 1rem;
   /* top, right+left, bottom */
-  padding: 30px 30px;
+  /* padding: 30px 30px; */
   /* setting the width is messing with the margin */
   width: 75vw;
 }
@@ -79,4 +76,8 @@ form input {
 .sol-links {
   display: flex;
   justify-content: center;
+}
+
+.NavBar Link {
+  font-size: 24px;
 }

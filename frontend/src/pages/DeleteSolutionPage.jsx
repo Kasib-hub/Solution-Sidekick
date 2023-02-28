@@ -5,7 +5,8 @@ import { fetchSolutionbyId, deleteSolutionbyId } from '../api/SolutionAPI'
 import DeleteSolutionPageCSS from './DeleteSolutionPage.module.css'
 
 const DeleteSolutionPage = () => {
-  
+  const userID = Number(localStorage.getItem('userID'))
+
   const navigate = useNavigate()
   const [solution, setSolution] = useState()
 

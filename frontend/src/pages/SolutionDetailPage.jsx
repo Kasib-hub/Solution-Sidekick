@@ -4,7 +4,6 @@ import { fetchSolutionbyId, getWikiArticle } from '../api/SolutionAPI'
 import { Link } from 'react-router-dom'
 import './SolutionDetailPage.css'
 import Table from 'react-bootstrap/Table';
-import Spinner from "../assets/Spinner.svg"
 import LoadingSpinner from '../components/LoadingSpinner'
 
 
@@ -12,6 +11,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 const SolutionDetailPage = () => {
 
   let {solutionID} = useParams()
+  const userID = Number(localStorage.getItem('userID'))
 
   const [solution, setSolution] = useState()
   const [wikiArticle, setWikiArticle] = useState()
@@ -60,10 +60,23 @@ const SolutionDetailPage = () => {
         </Table>
         <div className='instructions'>
           <p>{solution.instructions}</p>
-          <button onClick={handleClick}><h3>Did you know?</h3></button>
+          <button onClick={handleClick} className='submitBtn'><h3>Did you know?</h3></button>
           {!clicked ? <p></p> : <LoadingSpinner wikiArticle={wikiArticle}/>}
+
         </div>
-          <Link to={`/solution/${solution.id}/delete`}><button className='submitBtn'>DELETE</button></Link>
+          {
+            solution.creator !== userID ? <p></p>
+            : <div>
+                <Link to={`/solution/${solution.id}/edit`}>
+                  <button className='submitBtn'>EDIT</button>
+                </Link>
+                <Link to={`/solution/${solution.id}/delete`}>
+                  <button className='submitBtn'>DELETE</button>
+                </Link>
+              </div>
+          }
+
+
       </div>
   )
 }
