@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import { fetchSolutionbyId } from '../api/SolutionAPI'
-import CreateEditSolution from '../components/CreateEditSolution'
+import EditSolution from '../components/EditSolution'
 
 const SolutionEditPage = () => {
   const userID = Number(localStorage.getItem('userID'))
@@ -15,8 +15,6 @@ const SolutionEditPage = () => {
     fetchSolutionbyId(solutionID).then(data => setSolution(data))
   }, [])
 
-
-
   if (!solution) {return <h2>Loading...</h2>}
 
   else if (userID !== solution.creator) {
@@ -26,7 +24,7 @@ const SolutionEditPage = () => {
 
   return (
     <div>
-      <CreateEditSolution solution={solution} />
+      <EditSolution solution={solution} />
     </div>
   )
 

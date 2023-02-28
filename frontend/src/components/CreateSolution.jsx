@@ -1,25 +1,21 @@
 import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
-import { createSolution, putSolutionbyId } from "../api/SolutionAPI"
-import { getUserData } from "../api/SolutionAPI"
-import { Link } from "react-router-dom"
+import { createSolution } from "../api/SolutionAPI"
 import { useNavigate } from "react-router-dom"
 
 // needs to take in the single solution object as a prop
-const CreateEditSolution = ({solution}) => {
+const CreateSolution = () => {
   
   const navigate = useNavigate()
-  
+  const userID = localStorage.getItem('userID')
   const [inputs, setInputs] = useState({
-    title: "",
     source_conc: 0,
     final_conc: 0,
     final_vol: 0,
-    instructions: ""
   })
-  const [sourceVol, setsourceVol] = useState()
-  const [remainderVol, setRemainderVol] = useState()
-  const [userID ,setUserID] = useState()
+  const [sourceVol, setsourceVol] = useState(0)
+  const [remainderVol, setRemainderVol] = useState(0)
+  const [instructions, setInstructions] = useState(`Pour 0 of source volume into 0 of solvent`)
 
   // calculate needed solute volume in realtime
   useEffect(() => {
@@ -31,10 +27,14 @@ const CreateEditSolution = ({solution}) => {
     setRemainderVol(inputs.final_vol - sourceVol)
   }, [inputs.final_vol, sourceVol])
 
-  // retreive user id to make the post request
+  // create the instructions text
   useEffect(() => {
-    getUserData().then(data => setUserID(data.user_id))
-  }, [])
+    isNaN(sourceVol) || isNaN(remainderVol) 
+    ? setInstructions(`Pour 0 of source volume into 0 of solvent`)
+    : setInstructions(`Pour ${String(sourceVol)} of source volume into ${String(remainderVol)} of solvent`)
+    
+  }, [sourceVol, remainderVol])
+
 
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
@@ -48,7 +48,7 @@ const CreateEditSolution = ({solution}) => {
       "instructions": event.target.instructions.value,
       "creator": userID
     }
-    solution.title ? putSolutionbyId(solution.id, solutionObj) : createSolution(solutionObj)
+    createSolution(solutionObj)
     navigate('/solution_list')
   }
   // update formula parameters in a react way
@@ -61,9 +61,7 @@ const CreateEditSolution = ({solution}) => {
   // goal is to have form be display flexed with labels, nice big submit button
   return (
       <div>
-        {userID && <p>{userID}</p>}
-        {solution.title ? <h2>Edit Solution</h2> : <h2>Create A Solution</h2>}
-        {sourceVol > 0 && <p>{sourceVol}</p>}
+        <h2>Create A Solution</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='title'>Title</label>
           <input 
@@ -71,7 +69,6 @@ const CreateEditSolution = ({solution}) => {
             name='title' 
             placeholder="Enter a Title" 
             onChange={handleChange}
-            defaultValue={solution.title || ''}
           />
           <label htmlFor='source_conc'>Source Concentration</label>
           <input 
@@ -80,18 +77,15 @@ const CreateEditSolution = ({solution}) => {
             placeholder="Source concentration"
             step="any" 
             onChange={handleChange}
-            defaultValue={solution.source_conc|| ''}
           />
           <label htmlFor='source_vol'>Source Volume</label>
           <input 
             type='number' 
             name='source_vol' 
-            placeholder={solution.source_vol}
+            placeholder="Source Volume"
             step="any" 
             onChange={handleChange}
-            disabled defaultValue={solution.source_vol || ''}
-            value={sourceVol || solution.source_vol}
-            // defaultValue={solution.source_vol || ''}
+            disabled value={String(sourceVol)}
           />
           <label htmlFor='final_conc'>Final Concentration</label>
           <input 
@@ -100,7 +94,6 @@ const CreateEditSolution = ({solution}) => {
             placeholder="Final concentration" 
             step="any" 
             onChange={handleChange}
-            defaultValue={solution.final_conc || ''}
           />
           <label htmlFor='final_vol'>Final Volume</label>
           <input 
@@ -109,16 +102,15 @@ const CreateEditSolution = ({solution}) => {
             placeholder="Final volume"
             step="any" 
             onChange={handleChange}
-            defaultValue={solution.final_vol || ''}
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
           <label htmlFor='instructions'>Instructions</label>
           <input 
             type='text' 
             name='instructions' 
-            placeholder="Instructions show here" 
-            disabled defaultValue={solution.instructions || ''} 
-            value={solution.instructions || `Pour ${sourceVol} of source volume into ${remainderVol} of solvent`}
+            placeholder="Instructions show here"
+            value={instructions}
+            readOnly
           />
         </form>
         
@@ -126,4 +118,4 @@ const CreateEditSolution = ({solution}) => {
   )
 }
 
-export default CreateEditSolution
+export default CreateSolution

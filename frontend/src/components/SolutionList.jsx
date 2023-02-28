@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import './SolutionList.css'
 
-const SolutionList = ({solutions, userID}) => {
+const SolutionList = ({solutions}) => {
 
   return (
     <div>
@@ -12,14 +12,8 @@ const SolutionList = ({solutions, userID}) => {
               <h3>{solution.title}</h3>
               <p>by {solution.creator_name} - {solution.instructions}</p>
               <div className="sol-links">
-                <Link to={`/solution/${solution.id}`}>View Solution</Link> 
-                {
-                  solution.creator === userID 
-                  && <div className="sol-link-edit">
-                      <span> | </span>
-                      <Link to={`/solution/${solution.id}/edit`}>Edit Solution</Link>
-                    </div>
-                }
+                <Link to={`/solution/${solution.id}`}>View Solution</Link>
+                {/* comments/likes should go here somewhere  */}
               </div>
               <hr />
             </div>  
