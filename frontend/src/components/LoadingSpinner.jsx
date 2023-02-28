@@ -4,7 +4,14 @@ const LoadingSpinner = ({wikiArticle}) => {
 
   return (
     <div>
-      {!wikiArticle  ? <img src={Spinner} alt='spinning beaker' /> : <p>{wikiArticle}</p>}
+      {!wikiArticle  
+      ? <div>
+        
+          <img src={Spinner} alt='spinning beaker' />
+          <span>Loading Facts!</span>
+          <img src={Spinner} alt='spinning beaker' />
+        </div>
+      : <p>{wikiArticle}</p>}
     </div>
   );
   

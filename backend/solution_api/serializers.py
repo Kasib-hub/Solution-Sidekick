@@ -53,15 +53,26 @@ class SolutionSerializer(ModelSerializer):
         return instance
 
 class CommentSerializer(ModelSerializer):
+    author_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
-        fields = ["message"]
+        fields = ['id', 'message', 'created_at', 'modified', 'author', 'solution', 'author_name']
 
-        def create(self, validated_data):
-            return Comment.objects.create(**validated_data)
-        
-        def update(self, instance, validated_date):
-            instance.message = validated_date.get('message', instance.message)
+    def get_author_name(self, obj):
+        author = obj.author
+        return author.username
+
+    def create(self, validated_data):
+        instance = Comment.objects.create(
+            message=validated_data['message']
+        )
+        return instance
+        return Comment.objects.create(**validated_data)
+    
+    def update(self, instance, validated_date):
+        instance.message = validated_date.get('message', instance.message)
+        return instance
 
 class LikeSerializer(ModelSerializer):
     class Meta:

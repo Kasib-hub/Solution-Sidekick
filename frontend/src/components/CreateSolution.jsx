@@ -39,8 +39,9 @@ const CreateSolution = () => {
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
     event.preventDefault()
-    let solutionObj = {
-      "source_conc": event.target.source_conc.value,
+      // Math.round(solution.source_conc, 3),
+      let solutionObj = {
+      "source_conc": String(event.target.source_conc.value),
       "source_vol": event.target.source_vol.value,
       "final_conc": event.target.final_conc.value,
       "final_vol": event.target.final_vol.value,
