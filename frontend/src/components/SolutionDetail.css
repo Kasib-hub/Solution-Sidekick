@@ -6,7 +6,7 @@
 }
 
 .creator {
-  color: gray;
+  color: var(--gray);
 }
 
 Table {

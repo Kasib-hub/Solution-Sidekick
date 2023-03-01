@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import './SolutionList.css'
+import CommentList from "./CommentList"
 
 const SolutionList = ({solutions}) => {
 

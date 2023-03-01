@@ -54,6 +54,7 @@ class SolutionSerializer(ModelSerializer):
 
 class CommentSerializer(ModelSerializer):
     author_name = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -62,6 +63,9 @@ class CommentSerializer(ModelSerializer):
     def get_author_name(self, obj):
         author = obj.author
         return author.username
+    
+    def get_created_at(self, obj):
+        return obj.created_at.strftime('%I:%M%p - %B %d, %Y')
 
     def create(self, validated_data):
         instance = Comment.objects.create(

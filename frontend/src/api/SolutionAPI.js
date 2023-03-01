@@ -73,6 +73,18 @@ const deleteSolutionbyId = (solutionID) => {
     .catch(error => alert(error))
 }
 
+const fetchCommentsbySolution = (solutionID) => {
+  const token = userToken()
+  return axios.get(`${BASE_URL}solution_api/${solutionID}/comments`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    }
+  })
+    .then(res => res.data)
+    .catch(error => alert(error))
+}
+
 // stores token in a cookie
 const loginWithToken = (userData) => {
   fetch(`${BASE_URL}accounts/get-token`, {
@@ -119,6 +131,7 @@ export {
   BASE_URL,
   fetchAllSolutions,
   fetchSolutionbyId,
+  fetchCommentsbySolution,
   createSolution,
   putSolutionbyId,
   deleteSolutionbyId,
