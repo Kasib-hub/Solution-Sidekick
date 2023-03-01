@@ -21,14 +21,18 @@ const SolutionDetailPage = () => {
   useEffect(() => {
     fetchCommentsbySolution(solutionID).then(data => {setComments(data)}).catch(err => alert(err))
   }, [])
+
+  const updateComments = () => {
+    fetchCommentsbySolution(solutionID).then(data => {setComments(data)}).catch(err => alert(err))
+  }
  
   if (!solution) {return <h2>Loading...</h2>}
 
   return (
       <div>
         <SolutionDetail solution={solution} />
-        {/* I need an add comments form */}
-        <CreateComment userID={solution.creator} solutionID={solutionID}/>
+        {/* push the get comment function down as well*/}
+        <CreateComment creatorID={solution.creator} solutionID={solutionID} updateComments={updateComments}/>
         {!comments ? <p></p> : <CommentList comments={comments} />}
       </div>
   )

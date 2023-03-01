@@ -35,7 +35,6 @@ const CreateSolution = () => {
     
   }, [sourceVol, remainderVol])
 
-
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
     event.preventDefault()

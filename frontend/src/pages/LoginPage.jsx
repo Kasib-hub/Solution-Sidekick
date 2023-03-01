@@ -21,7 +21,7 @@ const LoginPage = () => {
     setTimeout(() => {
       navigate('/solution_list')
       window.location.reload()
-      }, 500)
+    }, 500)
     
   }
 

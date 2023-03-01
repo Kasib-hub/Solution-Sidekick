@@ -1,7 +1,9 @@
 import { createComment } from "../api/SolutionAPI"
 import { useState, useEffect } from "react"
 
-const CreateComment = ({userID, solutionID}) => {
+const CreateComment = ({solutionID, updateComments}) => {
+
+  const userID = Number(localStorage.getItem('userID'))
 
   const handleSubmit = (event) => {
     // commentObj needs message, solutionID, userID
@@ -12,14 +14,18 @@ const CreateComment = ({userID, solutionID}) => {
       "author": userID
     }
     createComment(commentObj, solutionID)
-    window.location.reload()
+    setTimeout(() => {
+      updateComments()
+    }, 250)
+    alert("Comment successfully created!")
+    event.target.message.value = ""
   }
 
   return (
     <div>
      <form onSubmit={handleSubmit}>
       <p>Share your thoughts on the Solution</p>
-      <textarea name="message"/>
+      <textarea name="message" placeholder="Make a Comment"/>
       <button className="submitBtn" type='submit'>Post Comment</button>
      </form>
     </div> 
