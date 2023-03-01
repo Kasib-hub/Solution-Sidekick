@@ -69,7 +69,9 @@ class CommentSerializer(ModelSerializer):
 
     def create(self, validated_data):
         instance = Comment.objects.create(
-            message=validated_data['message']
+            message=validated_data['message'],
+            author_id=validated_data['author'].id,
+            solution_id=validated_data['solution'].id
         )
         return instance
         return Comment.objects.create(**validated_data)

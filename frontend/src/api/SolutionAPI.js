@@ -85,6 +85,21 @@ const fetchCommentsbySolution = (solutionID) => {
     .catch(error => alert(error))
 }
 
+const createComment = (commentObj, solutionID) => {
+  const token = userToken()
+  fetch(`${BASE_URL}solution_api/${solutionID}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    },
+    body: JSON.stringify(commentObj)
+  })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error))
+}
+
 // stores token in a cookie
 const loginWithToken = (userData) => {
   fetch(`${BASE_URL}accounts/get-token`, {
@@ -132,6 +147,7 @@ export {
   fetchAllSolutions,
   fetchSolutionbyId,
   fetchCommentsbySolution,
+  createComment,
   createSolution,
   putSolutionbyId,
   deleteSolutionbyId,

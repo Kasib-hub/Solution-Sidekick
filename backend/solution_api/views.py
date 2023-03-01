@@ -61,7 +61,7 @@ class CommentsView(APIView):
         serializer = CommentSerializer(data=comment)
         if serializer.is_valid(raise_exception=True):
             comment_saved = serializer.save()
-        return Response({"result": f"Comment {comment_saved.comment}"})
+        return Response({"result": "Comment created successfully"})
 
     def put(self, request, solution_pk, comment_pk):
         saved_comment = get_object_or_404(Comment.objects.all(), pk=comment_pk)

@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import { fetchSolutionbyId, fetchCommentsbySolution } from '../api/SolutionAPI'
 import SolutionDetail from '../components/SolutionDetail'
 import CommentList from '../components/CommentList'
+import CreateComment from '../components/CreateComment'
 // here is where the api calls will go
 const SolutionDetailPage = () => {
 
@@ -22,11 +23,13 @@ const SolutionDetailPage = () => {
   }, [])
  
   if (!solution) {return <h2>Loading...</h2>}
-  
+
   return (
       <div>
-        <SolutionDetail solution={solution}/>
-        {!comments ? <p></p> : <CommentList comments={comments}/>}
+        <SolutionDetail solution={solution} />
+        {/* I need an add comments form */}
+        <CreateComment userID={solution.creator} solutionID={solutionID}/>
+        {!comments ? <p></p> : <CommentList comments={comments} />}
       </div>
   )
 }

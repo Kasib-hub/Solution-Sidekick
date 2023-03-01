@@ -8,7 +8,6 @@ const CommentList = ({comments}) => {
       {/* left align comments title */}
       <h3>Comments</h3>
       <hr />
-      {console.log(comments)}
       {
         comments.result.map((comment, idx) => {
           return (
