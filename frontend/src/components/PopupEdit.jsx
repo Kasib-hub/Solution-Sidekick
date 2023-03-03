@@ -1,5 +1,5 @@
 import { putCommentbyId } from "../api/SolutionAPI"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import FloppyDisk from '../assets/FloppyDisk.svg'
 
 const PopupEdit = ({comment, setTrigger, updateComments}) => {
@@ -29,7 +29,7 @@ const PopupEdit = ({comment, setTrigger, updateComments}) => {
       <div className="popup-box">
         <p>Edit Your Comment</p>
         <form onSubmit={handleSubmit}>
-          <textarea name="message" onChange={handleChange} value={editComment}/>
+          <textarea name="message" rows="6" cols="60" onChange={handleChange} value={editComment}/>
           <button type="submit"><img src={FloppyDisk} alt='floppy disk save'/></button>
           <button type="button" onClick={handleClick}>Go Back</button>
         </form>

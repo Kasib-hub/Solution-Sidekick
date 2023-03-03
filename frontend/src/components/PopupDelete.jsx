@@ -1,11 +1,18 @@
-import { createComment } from "../api/SolutionAPI"
-import { useState, useEffect } from "react"
+import { deleteCommentbyId } from "../api/SolutionAPI"
 
-const PopupDelete = ({comment, setTrigger}) => {
+const PopupDelete = ({comment, setTrigger, updateComments}) => {
 
   // make api call to delete this comment
 
-  const handleClick = () => {
+  const handleDeleteClick = () => {
+    deleteCommentbyId(comment.solution, comment.id)
+    setTimeout(() => {
+      updateComments()
+    }, 250)
+    setTrigger(false)
+  }
+
+  const handleBackClick = () => {
     setTrigger(false)
   }
 
@@ -13,7 +20,8 @@ const PopupDelete = ({comment, setTrigger}) => {
     <div className="popup">
       <div className="popup-box">
         <p>Are you sure you want to delete your comment? {comment.message}</p>
-        <button onClick={handleClick}>Yes, Delete</button><button onClick={handleClick}>No, Go Back</button>
+        <button onClick={handleDeleteClick}>Yes, Delete</button>
+        <button onClick={handleBackClick}>No, Go Back</button>
       </div>
 
     </div> 
