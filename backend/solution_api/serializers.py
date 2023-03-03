@@ -1,8 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from .models import Solution, Comment, Like
-from django.contrib.auth.models import User
-from datetime import datetime
 
 class SolutionSerializer(ModelSerializer):
     # define the new serializer property with method field
@@ -33,7 +31,6 @@ class SolutionSerializer(ModelSerializer):
             creator=validated_data['creator']
         )
         return instance
-        
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)

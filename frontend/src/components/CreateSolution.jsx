@@ -48,8 +48,13 @@ const CreateSolution = () => {
       "instructions": event.target.instructions.value,
       "creator": userID
     }
-    createSolution(solutionObj)
-    navigate('/solution_list')
+    createSolution(solutionObj)  
+      .then(res => {
+        if (res.ok) {
+          alert("Solution Created Successfully")
+          navigate('/solution_list')
+        } else {alert("Incomplete form")}
+      })
   }
   // update formula parameters in a react way
   const handleChange = (event) => {

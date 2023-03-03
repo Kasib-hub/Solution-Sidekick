@@ -1,5 +1,6 @@
 // so now all of my requests need tokens, pass into function?
 // logging out is deleting the token and navigating back to sign up page.
+
 import { userToken } from '../helpers/helperFunctions';
 import axios from 'axios'
 const BASE_URL = 'http://127.0.0.1:8000/'
@@ -33,7 +34,7 @@ const fetchSolutionbyId = (solutionID) => {
 
 const createSolution = (solutionObj) => {
   const token = userToken()
-  fetch(`${BASE_URL}solution_api/`, {
+  return fetch(`${BASE_URL}solution_api/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ const createSolution = (solutionObj) => {
     },
     body: JSON.stringify(solutionObj)
   })
-    .then(res => res.ok ? console.log('POST success') : console.log('POST no good'))
+
 }
 
 const putSolutionbyId = (solutionID, updatedData) => {
@@ -123,6 +124,18 @@ const deleteCommentbyId = (solutionID, commentID) => {
     .catch(error => alert(error))
 }
 
+const fetchLikesbySolution = (solutionID) => {
+  const token = userToken()
+  return axios.get(`${BASE_URL}solution_api/${solutionID}/likes`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    }
+  })
+    .then(res => res.data)
+    .catch(error => alert(error))
+}
+
 // stores token in a cookie
 const loginWithToken = (userData) => {
   fetch(`${BASE_URL}accounts/get-token`, {
@@ -173,6 +186,7 @@ export {
   createComment,
   putCommentbyId,
   deleteCommentbyId,
+  fetchLikesbySolution,
   createSolution,
   putSolutionbyId,
   deleteSolutionbyId,
