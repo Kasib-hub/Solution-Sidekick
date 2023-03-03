@@ -9,8 +9,16 @@ const CommentList = ({comments}) => {
 
   const userID = Number(localStorage.getItem('userID'))
 
-  const [editPopup, setEditPopup] = useState(false)
-  const [deletePopup, setDeletePopup] = useState(false)
+  const [editPopup, setEditPopup] = useState()
+  const [deletePopup, setDeletePopup] = useState()
+
+  const handleEditClick = () => {
+
+  }
+
+  const handleDeleteClick = () => {
+
+  }
 
   return (
     <div>
@@ -25,18 +33,22 @@ const CommentList = ({comments}) => {
               <p>{comment.message}</p>
               <p className="subtext">by {comment.author_name} at {comment.created_at}</p>
               {
+                // check if there was an edit. Show date of most recent edit
+                comment.created_at === comment.modified 
+                ? "" 
+                : <p className="subtext">edit at {comment.modified}</p>
+              }
+              {
                 // check if the author of the comment is the same as the logged in user
                 comment.author !== userID
                 ? <p></p>
                 : <div className="sol-links">
-                    <button className="submitBtn" onClick={() => setEditPopup(true)}>
+                    <button className="submitBtn" onClick={() => setEditPopup(comment)}>
                       {<img src={Modify} alt="Pencil Icon" />}
                     </button>
-                    <button className="submitBtn" onClick={() => setDeletePopup(true)}>
+                    <button className="submitBtn" onClick={() => setDeletePopup(comment)}>
                       {<img src={Trash} alt="Trash Icon" />}
                     </button>
-                    <PopupDelete trigger={deletePopup} setTrigger={setDeletePopup}/>
-                    <PopupEdit trigger={editPopup} setTrigger={setEditPopup}/>
                   </div>
               }
               <hr />
@@ -44,7 +56,8 @@ const CommentList = ({comments}) => {
           )
         })
       }
-
+      <PopupDelete comment={deletePopup} setTrigger={setDeletePopup}/>
+      <PopupEdit comment={editPopup} setTrigger={setEditPopup}/>
     </div>
   )
 }

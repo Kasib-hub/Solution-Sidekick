@@ -70,7 +70,7 @@ class CommentsView(APIView):
         #The .is_valid() method takes an optional raise_exception flag that will cause it to raise a serializers.ValidationError exception if there are validation errors.
         if serializer.is_valid(raise_exception=True):#
             saved_comment = serializer.save()
-        return Response({"result": f"{saved_comment.comment} updated"})
+        return Response({"result": f"{saved_comment.message} updated"})
 
     def delete(self, request, solution_pk, comment_pk):
         comment = get_object_or_404(Comment.objects.all(), pk=comment_pk)

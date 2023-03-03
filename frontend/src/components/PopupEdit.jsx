@@ -1,15 +1,25 @@
 import { createComment } from "../api/SolutionAPI"
 import { useState, useEffect } from "react"
+import FloppyDisk from '../assets/FloppyDisk.svg'
 
-const PopupEdit = ({trigger, setTrigger}) => {
+const PopupEdit = ({comment, setTrigger}) => {
 
-  return (trigger) ? (
-    <div>
-     <form>
-      <p>Share your thoughts on the Solution</p>
-      <textarea name="message"/>
-      <button className="submitBtn" type='submit'>Post Comment</button>
-     </form>
+  // make api call to edit this comment
+
+  const handleClick = () => {
+    setTrigger(false)
+  }
+
+  return (comment) ? (
+    <div className="popup">
+      <div className="popup-box">
+        <form>
+          <p>Edit Your Comment</p>
+          <textarea name="message"/>
+          <button onClick={handleClick}><img src={FloppyDisk} alt='floppy disk save'/></button>
+        </form>
+      </div>
+
     </div> 
   ) : ""
 }

@@ -4,13 +4,6 @@ from .models import Solution, Comment, Like
 from django.contrib.auth.models import User
 from datetime import datetime
 
-# class WineSerializer(serializers.Serializer):
-#     wine_name = serializers.CharField(max_length=120)
-#     price = serializers.CharField()
-#     varietal = serializers.CharField()
-#     id = serializers.IntegerField()
-#     created_at = serializers.DateTimeField()
-
 class SolutionSerializer(ModelSerializer):
     # define the new serializer property with method field
     creator_name = serializers.SerializerMethodField()
@@ -55,6 +48,7 @@ class SolutionSerializer(ModelSerializer):
 class CommentSerializer(ModelSerializer):
     author_name = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
+    modified = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -66,6 +60,9 @@ class CommentSerializer(ModelSerializer):
     
     def get_created_at(self, obj):
         return obj.created_at.strftime('%I:%M%p - %B %d, %Y')
+    
+    def get_modified(self, obj):
+        return obj.modified.strftime('%I:%M%p - %B %d, %Y')
 
     def create(self, validated_data):
         instance = Comment.objects.create(
@@ -74,10 +71,10 @@ class CommentSerializer(ModelSerializer):
             solution_id=validated_data['solution'].id
         )
         return instance
-        return Comment.objects.create(**validated_data)
     
-    def update(self, instance, validated_date):
-        instance.message = validated_date.get('message', instance.message)
+    def update(self, instance, validated_data):
+        instance.message = validated_data.get('message', instance.message)
+        instance.save()
         return instance
 
 class LikeSerializer(ModelSerializer):

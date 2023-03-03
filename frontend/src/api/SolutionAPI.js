@@ -2,10 +2,7 @@
 // logging out is deleting the token and navigating back to sign up page.
 import { userToken } from '../helpers/helperFunctions';
 import axios from 'axios'
-const BASE_URL = 'http://127.0.0.1:8000/';
-const PRE_WIKI = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles='
-const POST_WIKI = '&format=json&exsentences=2&explaintext=1&formatversion=2&origin=*'
-
+const BASE_URL = 'http://127.0.0.1:8000/'
 
 // add a token?
 const fetchAllSolutions = () => {

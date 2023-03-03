@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import './SolutionList.css'
-import CommentList from "./CommentList"
+import { useEffect } from "react"
 
 const SolutionList = ({solutions}) => {
 
@@ -10,6 +10,7 @@ const SolutionList = ({solutions}) => {
         solutions.map((solution, idx) => {
           return (
             <div key={idx}>
+              {/* show likes here somewhere */}
               <h3>{solution.title}</h3>
               <p>by {solution.creator_name} - {solution.instructions}</p>
               <div className="sol-links">
