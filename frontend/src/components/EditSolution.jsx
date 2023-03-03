@@ -21,7 +21,7 @@ const EditSolution = ({solution}) => {
     setsourceVol(inputs.final_conc * inputs.final_vol / inputs.source_conc)
   }, [inputs.final_conc, inputs.final_vol, inputs.source_conc])
   
-  // give the remainder volume needed to reach final volume in realtime
+  // calculate the remainder volume needed to reach final volume in realtime
   useEffect(() => {
     setRemainderVol(inputs.final_vol - sourceVol)
   }, [inputs.final_vol, sourceVol])
@@ -90,7 +90,7 @@ const EditSolution = ({solution}) => {
           />
           <label htmlFor='final_conc'>Final Concentration</label>
           <input 
-            type='decimal' 
+            type='number' 
             name='final_conc' 
             placeholder="Final concentration" 
             step="0.001" 

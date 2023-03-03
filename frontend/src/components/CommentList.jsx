@@ -5,20 +5,12 @@ import { useState } from "react"
 import PopupDelete from "./PopupDelete"
 import PopupEdit from "./PopupEdit"
 // take in the comments list for this solution
-const CommentList = ({comments}) => {
+const CommentList = ({comments, updateComments}) => {
 
   const userID = Number(localStorage.getItem('userID'))
 
   const [editPopup, setEditPopup] = useState()
   const [deletePopup, setDeletePopup] = useState()
-
-  const handleEditClick = () => {
-
-  }
-
-  const handleDeleteClick = () => {
-
-  }
 
   return (
     <div>
@@ -56,8 +48,8 @@ const CommentList = ({comments}) => {
           )
         })
       }
-      <PopupDelete comment={deletePopup} setTrigger={setDeletePopup}/>
-      <PopupEdit comment={editPopup} setTrigger={setEditPopup}/>
+      {deletePopup && <PopupDelete comment={deletePopup} setTrigger={setDeletePopup} updateComments={updateComments}/>}
+      {editPopup && <PopupEdit comment={editPopup} setTrigger={setEditPopup} updateComments={updateComments}/>}
     </div>
   )
 }

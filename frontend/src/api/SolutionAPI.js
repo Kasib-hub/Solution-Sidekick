@@ -44,7 +44,6 @@ const createSolution = (solutionObj) => {
     .then(res => res.ok ? console.log('POST success') : console.log('POST no good'))
 }
 
-// put request on a wine object
 const putSolutionbyId = (solutionID, updatedData) => {
   const token = userToken()
   fetch(`${BASE_URL}solution_api/${solutionID}`, {
@@ -97,6 +96,21 @@ const createComment = (commentObj, solutionID) => {
     .catch(error => console.error(error))
 }
 
+const putCommentbyId = (solutionID, commentID, updatedData) => {
+  const token = userToken()
+  fetch(`${BASE_URL}solution_api/${solutionID}/comments/${commentID}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    },
+    body: JSON.stringify(updatedData)
+  })
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(error => alert(error))
+}
+
 // stores token in a cookie
 const loginWithToken = (userData) => {
   fetch(`${BASE_URL}accounts/get-token`, {
@@ -145,6 +159,7 @@ export {
   fetchSolutionbyId,
   fetchCommentsbySolution,
   createComment,
+  putCommentbyId,
   createSolution,
   putSolutionbyId,
   deleteSolutionbyId,

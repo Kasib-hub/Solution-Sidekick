@@ -45,7 +45,7 @@ const SolutionDetail = ({solution}) => {
               <td>&#61;</td>
               <td>{solution.final_conc}</td>
               <td>&#215;</td>
-              <td>{solution.source_conc}</td>
+              <td>{solution.final_vol}</td>
             </tr>
           </tbody>
         </Table>

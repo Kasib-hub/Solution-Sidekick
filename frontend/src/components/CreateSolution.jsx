@@ -89,7 +89,7 @@ const CreateSolution = () => {
           />
           <label htmlFor='final_conc'>Final Concentration</label>
           <input 
-            type='decimal' 
+            type='number' 
             name='final_conc' 
             placeholder="Final concentration" 
             step="any" 
