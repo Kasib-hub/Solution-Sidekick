@@ -4,8 +4,9 @@
   font-size: 14px;
   width: 100vw;
   text-align: right;
-  background-color: var(--corn);
+  background-color: var(--cream);
   padding: 14px;
+  border-bottom: 2px solid var(--purple);
 }
 
 .login_as {

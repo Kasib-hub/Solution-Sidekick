@@ -13,7 +13,7 @@ const CommentList = ({comments, updateComments}) => {
   const [deletePopup, setDeletePopup] = useState()
 
   return (
-    <div>
+    <div className="general-box">
       
       {/* left align comments title */}
       <h3>Comments</h3>

@@ -38,10 +38,16 @@
 
 .general-box {
   display: flex;
+  margin: 1rem;
+  margin-top: 2rem;
   padding: 1rem;
+  background-color: var(--cream);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 2px solid var(--purple);
+  border-radius: 1rem;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 form {

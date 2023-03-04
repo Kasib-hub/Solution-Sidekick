@@ -2,7 +2,6 @@ import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
 import { createSolution } from "../api/SolutionAPI"
 import { useNavigate } from "react-router-dom"
-import { evaluateFraction } from "../helpers/helperFunctions"
 
 // needs to take in the single solution object as a prop
 const CreateSolution = () => {
@@ -67,7 +66,7 @@ const CreateSolution = () => {
 
   // goal is to have form be display flexed with labels, nice big submit button
   return (
-      <div>
+      <div className="general-box">
         <h2>Create A Solution</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='title'>Title</label>
