@@ -13,6 +13,7 @@ class Solution(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    units = models.CharField(max_length=3, null=True)
     source_conc = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.001)])
     source_vol = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.001)])
     final_conc = models.DecimalField(max_digits=10, decimal_places=8, validators=[MinValueValidator(0.000001)])

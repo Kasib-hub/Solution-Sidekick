@@ -10,7 +10,7 @@ class SolutionSerializer(ModelSerializer):
     # make sure to add the new property to fields
     class Meta:
         model = Solution
-        fields = ["id", "title", "creator_name", "created_at", "instructions", "modified",
+        fields = ["id", "title", "creator_name", "created_at", "instructions", "units", "modified",
          "source_conc", "source_vol", "final_conc", "final_vol", "creator"]
 
     def get_creator_name(self, obj):
@@ -24,6 +24,7 @@ class SolutionSerializer(ModelSerializer):
         instance = Solution.objects.create(
             title=validated_data['title'],
             instructions=validated_data['instructions'],
+            units=validated_data['units'],
             source_conc=validated_data['source_conc'],
             source_vol=validated_data['source_vol'],
             final_conc=validated_data['final_conc'],

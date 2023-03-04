@@ -69,6 +69,7 @@ const EditSolution = ({solution}) => {
             placeholder="Enter a Title" 
             onChange={handleChange}
             value={solution.title}
+            required
           />
           <label htmlFor='source_conc'>Source Concentration</label>
           <input 
@@ -78,6 +79,7 @@ const EditSolution = ({solution}) => {
             step="0.01"
             onChange={handleChange}
             value={inputs.source_conc}
+            required
           />
           <label htmlFor='source_vol'>Source Volume</label>
           <input 
@@ -96,6 +98,7 @@ const EditSolution = ({solution}) => {
             step="any" 
             onChange={handleChange}
             value={inputs.final_conc}
+            required
           />
           <label htmlFor='final_vol'>Final Volume</label>
           <input 
@@ -104,6 +107,7 @@ const EditSolution = ({solution}) => {
             placeholder="Final volume"
             onChange={handleChange}
             value={inputs.final_vol}
+            required
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
           <label htmlFor='instructions'>Instructions</label>

@@ -8,35 +8,10 @@
   /* top, right+left, bottom */
   /* padding: 30px 30px; */
   /* setting the width is messing with the margin */
-  width: 75vw;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
@@ -61,16 +36,42 @@
   background-color: var(--violet);
 }
 
+.general-box {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-form input {
+input[type="text"], input[type="number"], textarea {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
   padding: 10px;
   border-radius: 10px;
   margin: 10px 0;
+  color: var(--black);
+}
+
+textarea {
+  font-size: 14px;
+}
+/* form input {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+} */
+
+.title-likes {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .sol-links {

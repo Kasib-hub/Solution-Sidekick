@@ -13,11 +13,16 @@ const checkToken = () => {
 }
 
 // cut off the trailing zeroes
-const cutZeroes = (numStr) => {
-  return Number(numStr.toFixed(4))
+const evaluateFraction = (numStr) => {
+  if (String(numStr).includes('/')) {
+    let numArr = numStr.split('/')
+    return numArr[0] / numArr[1]
+  }
+  return numStr
 }
 
 export {
   userToken,
-  checkToken
+  checkToken,
+  evaluateFraction
 }

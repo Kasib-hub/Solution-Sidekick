@@ -2,6 +2,7 @@ import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
 import { createSolution } from "../api/SolutionAPI"
 import { useNavigate } from "react-router-dom"
+import { evaluateFraction } from "../helpers/helperFunctions"
 
 // needs to take in the single solution object as a prop
 const CreateSolution = () => {
@@ -12,10 +13,11 @@ const CreateSolution = () => {
     source_conc: 0,
     final_conc: 0,
     final_vol: 0,
+    units: "",
   })
   const [sourceVol, setsourceVol] = useState(0)
   const [remainderVol, setRemainderVol] = useState(0)
-  const [instructions, setInstructions] = useState(`Pour 0 of source volume into 0 of solvent`)
+  const [instructions, setInstructions] = useState(`Pour 0  of source volume into 0 of solvent`)
 
   // calculate needed solute volume in realtime
   useEffect(() => {
@@ -30,17 +32,17 @@ const CreateSolution = () => {
   // create the instructions text
   useEffect(() => {
     isNaN(sourceVol) || isNaN(remainderVol) 
-    ? setInstructions(`Pour 0 of source volume into 0 of solvent`)
-    : setInstructions(`Pour ${String(sourceVol)} of source volume into ${String(remainderVol)} of solvent`)
+    ? setInstructions(`Pour 0 ${inputs.units} of source volume into 0 ${inputs.units} of solvent`)
+    : setInstructions(`Pour ${String(sourceVol)} ${inputs.units} of source volume into ${String(remainderVol)} ${inputs.units} of solvent`)
     
-  }, [sourceVol, remainderVol])
+  }, [sourceVol, remainderVol, inputs.units])
 
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
     event.preventDefault()
-      // Math.round(solution.source_conc, 3),
       let solutionObj = {
-      "source_conc": Number(event.target.source_conc.value),
+      "units" : event.target.units.value,
+      "source_conc": event.target.source_conc.value,
       "source_vol": event.target.source_vol.value,
       "final_conc": event.target.final_conc.value,
       "final_vol": event.target.final_vol.value,
@@ -74,7 +76,29 @@ const CreateSolution = () => {
             name='title' 
             placeholder="Enter a Title" 
             onChange={handleChange}
+            required
           />
+          <p>Unit of Measure</p>
+          <div className="radio-btns">
+            <input 
+              type='radio' 
+              name='units'
+              value='µL'
+              onChange={handleChange}
+            />&#181;L
+            <input 
+              type='radio' 
+              name='units'
+              value='mL'
+              onChange={handleChange}
+            />mL
+            <input 
+              type='radio' 
+              name='units'
+              value='L'
+              onChange={handleChange}
+            />L
+          </div>
           <label htmlFor='source_conc'>Source Concentration</label>
           <input 
             type='number' 
@@ -82,6 +106,7 @@ const CreateSolution = () => {
             placeholder="Source concentration"
             step="0.01"
             onChange={handleChange}
+            required
           />
           <label htmlFor='source_vol'>Source Volume</label>
           <input 
@@ -99,6 +124,7 @@ const CreateSolution = () => {
             placeholder="Final concentration" 
             step="any" 
             onChange={handleChange}
+            required
           />
           <label htmlFor='final_vol'>Final Volume</label>
           <input 
@@ -106,6 +132,7 @@ const CreateSolution = () => {
             name='final_vol' 
             placeholder="Final volume"
             onChange={handleChange}
+            required
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
           <label htmlFor='instructions'>Instructions</label>

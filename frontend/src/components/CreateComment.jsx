@@ -1,5 +1,4 @@
 import { createComment } from "../api/SolutionAPI"
-import { useState, useEffect } from "react"
 
 const CreateComment = ({solutionID, updateComments}) => {
 
@@ -22,7 +21,7 @@ const CreateComment = ({solutionID, updateComments}) => {
   }
 
   return (
-    <div>
+    <div className="general-box">
      <form onSubmit={handleSubmit}>
       <p>Share your thoughts on the Solution</p>
       <textarea name="message" placeholder="Make a Comment"/>

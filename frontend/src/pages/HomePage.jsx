@@ -10,7 +10,7 @@ const HomePage = () => {
 
 
   return (
-      <div>
+      <div className='general-box'>
           <h2>The HomePage</h2>
           <Link to='/create_solution'><button className='submitBtn'>Let's Make a Solution</button></Link>
           <p>I want the homepage to consist of div with formula maker</p>

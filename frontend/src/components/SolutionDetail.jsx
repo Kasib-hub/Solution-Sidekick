@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import './SolutionDetail.css'
 import Table from 'react-bootstrap/Table';
 import LoadingSpinner from './LoadingSpinner'
+import ThumbsUpSelected from '../assets/ThumbsUpSelected.svg'
 
 
 // here is where the api calls will go
@@ -19,11 +20,15 @@ const SolutionDetail = ({solution}) => {
     setClicked(true)
   }
 
+  // so if the userID matches an api call for the likes under solutoin then render the colored thumb otherwise the blank thumb that is a button
   if (!solution) {return <h2>Loading...</h2>}
   return (
-      <div className='detail'>
-        
-        <h2>{solution.title}</h2>
+      <div className='general-box'>
+        <div className='title-likes'>
+          <p></p>
+          <h2>{solution.title}</h2>
+          <span><img src={ThumbsUpSelected} alt='likes img'></img></span>
+        </div>
         <p className='creator'>by {solution.creator_name} at {solution.created_at}</p>
         <Table striped className='formula-values'>
           <thead>
