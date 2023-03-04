@@ -80,7 +80,7 @@ const CreateSolution = () => {
             type='number' 
             name='source_conc' 
             placeholder="Source concentration"
-            step="any" 
+            step="0.1"
             onChange={handleChange}
           />
           <label htmlFor='source_vol'>Source Volume</label>
@@ -105,7 +105,6 @@ const CreateSolution = () => {
             type='number' 
             name='final_vol' 
             placeholder="Final volume"
-            step="any" 
             onChange={handleChange}
           />
           <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
