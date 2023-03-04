@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  max-width: 1280;
+  padding: 0;
   margin: 0;
   text-align: center;
 }
@@ -8,6 +9,13 @@
   /* top, right+left, bottom */
   /* padding: 30px 30px; */
   /* setting the width is messing with the margin */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,6 +31,10 @@
 }
 
 .submitBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
   background-color: var(--violet);
   color: var(--cream);
 }
@@ -45,7 +57,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--purple);
+  width: 50%;
   border-radius: 1rem;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
@@ -54,24 +66,36 @@ form {
   display: flex;
   flex-direction: column;
   text-align: left;
+  width: 100%;
 }
 
-input[type="text"], input[type="number"], textarea {
+form label {
+  margin-top: 15px;
+}
+
+input[type="text"], input[type="number"], input[type="password"], input[type="email"], textarea {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 16px;
   padding: 10px;
   border-radius: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
+  background-color: var(--cream);
   color: var(--black);
+  border-bottom-style: solid;
+  border: none;
+  border-bottom: solid 2px var(--violet);
 }
 
 textarea {
   font-size: 14px;
 }
-/* form input {
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px 0;
+
+/* .instructions-text {
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: solid 2px var(--violet);
+  border-bottom-style: solid;
+  background-color: var(--cream);
 } */
 
 .title-likes {
@@ -80,9 +104,15 @@ textarea {
   justify-content: space-between;
 }
 
+.radio-btns {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
 .sol-links {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .NavBar Link {

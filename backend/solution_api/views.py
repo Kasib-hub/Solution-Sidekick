@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from .serializers import SolutionSerializer, CommentSerializer, LikeSerializer     # we create the serializers
 from .models import Solution, Comment, Like
+from .helpers.helpers import sanitize_strng
 load_dotenv()
 import os
 
@@ -107,19 +108,22 @@ class ThirdPartyView(APIView):
 
     def post(self, request):
         api_key = os.environ.get('API_KEY')
-        clean_search = ''
-        search = '_'.join(request.data['data'].split(' '))
+        raw_search = '_'.join(request.data['data'].split(' '))
+        search = sanitize_strng(raw_search)
+        second_search = ""
+        
         # now that I have solution title, make the first call to get an appropriate title for the wiki
         search_res = requests.get(f'https://serpapi.com/search.json?q={search}_blood_wiki&hl=en&gl=us&google_domain=google.com&api_key={api_key}')
 
+        print(f'The search term is {search}_wiki')
         if search_res.status_code == 200:
             body = search_res.json()
-            clean_search = body['organic_results'][0]['link'].split('/')[-1]
+            second_search = body['organic_results'][0]['link'].split('/')[-1]
         else:
             return Response({'Error': 'error occured'})
 
-        print('this is clean_+_+_+_+_+', clean_search)
-        res = requests.get(f'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles={clean_search}&format=json&exsentences=5&explaintext=1&formatversion=2&origin=*')
+        print('this is clean_+_+_+_+_+', second_search)
+        res = requests.get(f'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles={second_search}&format=json&exsentences=5&explaintext=1&formatversion=2&origin=*')
 
         if res.status_code == 200:
             body = res.json()

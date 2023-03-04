@@ -9,14 +9,19 @@ const SolutionList = ({solutions}) => {
       {
         solutions.map((solution, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className='map-item'>
               {/* show likes here somewhere */}
-              <h3>{solution.title}</h3><span><LikesOnSolution solution={solution}/></span>
-              <p>by {solution.creator_name} - {solution.instructions}</p>
               <div className="sol-links">
+                <p></p>
+                <h3>{solution.title}</h3><span><LikesOnSolution solution={solution}/></span>
+              </div>
+
+              <p>by {solution.creator_name} at {solution.created_at}</p>
+              <p>{solution.instructions}</p>
+              <div>
                 <Link to={`/solution/${solution.id}`}>View Solution</Link>
                 {/* comments/likes should go here somewhere  */}
-              </div>
+              </div><br />
               <hr />
             </div>  
           )

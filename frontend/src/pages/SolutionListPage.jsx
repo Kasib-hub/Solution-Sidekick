@@ -11,9 +11,8 @@ const SolutionListPage = () => {
   }, [])
 
   return (
-    <div>
-      <h3>Welcome!</h3>
-      <h2>Solution List</h2>
+    <div className="general-box">
+      <h2>Solution List</h2><br/>
       {!solutions ? <p></p> : <SolutionList solutions={solutions}/>}
     </div>
   )

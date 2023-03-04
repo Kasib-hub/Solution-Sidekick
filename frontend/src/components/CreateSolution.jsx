@@ -79,24 +79,31 @@ const CreateSolution = () => {
           />
           <p>Unit of Measure</p>
           <div className="radio-btns">
-            <input 
-              type='radio' 
-              name='units'
-              value='µL'
-              onChange={handleChange}
-            />&#181;L
-            <input 
-              type='radio' 
-              name='units'
-              value='mL'
-              onChange={handleChange}
-            />mL
-            <input 
-              type='radio' 
-              name='units'
-              value='L'
-              onChange={handleChange}
-            />L
+            <div>
+              <input 
+                type='radio' 
+                name='units'
+                value='µL'
+                onChange={handleChange}
+              /> &#181;L
+            </div>
+            <div>
+              <input 
+                type='radio' 
+                name='units'
+                value='mL'
+                onChange={handleChange}
+              /> mL
+            </div>
+            <div>
+              <input 
+                type='radio' 
+                name='units'
+                value='L'
+                onChange={handleChange}
+              /> L
+            </div>
+
           </div>
           <label htmlFor='source_conc'>Source Concentration</label>
           <input 
@@ -133,15 +140,17 @@ const CreateSolution = () => {
             onChange={handleChange}
             required
           />
-          <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
-          <label htmlFor='instructions'>Instructions</label>
-          <input 
+
+          <input
+            className="instructions-text"
             type='text' 
             name='instructions' 
             placeholder="Instructions show here"
             value={instructions}
             readOnly
           />
+          <button className="submitBtn" type='submit'>Save Solution{<img src={Flask} alt="Flask Icon" />}</button>
+          {/* <label htmlFor='instructions'>Instructions</label> */}
         </form>
         
       </div>

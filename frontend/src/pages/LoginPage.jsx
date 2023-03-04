@@ -26,7 +26,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
+    <div className="general-box">
       <h3>Login Page</h3>
       <form onSubmit={handleSubmit}>
         <input type="text" name="username" placeholder="Enter Username" />

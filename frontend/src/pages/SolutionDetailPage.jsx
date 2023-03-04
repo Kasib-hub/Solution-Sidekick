@@ -29,7 +29,7 @@ const SolutionDetailPage = () => {
   if (!solution) {return <h2>Loading...</h2>}
 
   return (
-      <div>
+      <div className='detail-container'>
         <SolutionDetail solution={solution} />
         {/* push the get comment function down as well*/}
         <CreateComment creatorID={solution.creator} solutionID={solutionID} updateComments={updateComments}/>

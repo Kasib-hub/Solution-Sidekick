@@ -2,7 +2,6 @@
 
 :root {
   font-family: 'IBM Plex Mono', monospace;
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   color: var(--black);
   background-color: var(--corn);
   background-image: linear-gradient(to bottom right, var(--corn) 40%,var(--violet));
@@ -72,16 +71,3 @@ button:hover {
   border-color: #646cff;
 }
 
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
