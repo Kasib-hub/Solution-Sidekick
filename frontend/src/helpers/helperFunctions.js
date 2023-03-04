@@ -12,6 +12,11 @@ const checkToken = () => {
   return token ? true : setTimeout(checkToken, 300)
 }
 
+// cut off the trailing zeroes
+const cutZeroes = (numStr) => {
+  return Number(numStr.toFixed(4))
+}
+
 export {
   userToken,
   checkToken

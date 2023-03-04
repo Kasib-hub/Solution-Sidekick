@@ -31,7 +31,7 @@ const CommentList = ({comments, updateComments}) => {
                 : <p className="subtext">edit at {comment.modified}</p>
               }
               {
-                // check if the author of the comment is the same as the logged in user
+                // check if the author of the comment is the same as the logged in user that way they can easily edit/delete comments
                 comment.author !== userID
                 ? <p></p>
                 : <div className="sol-links">

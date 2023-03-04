@@ -40,7 +40,7 @@ const CreateSolution = () => {
     event.preventDefault()
       // Math.round(solution.source_conc, 3),
       let solutionObj = {
-      "source_conc": event.target.source_conc.value,
+      "source_conc": Number(event.target.source_conc.value),
       "source_vol": event.target.source_vol.value,
       "final_conc": event.target.final_conc.value,
       "final_vol": event.target.final_vol.value,
@@ -80,7 +80,7 @@ const CreateSolution = () => {
             type='number' 
             name='source_conc' 
             placeholder="Source concentration"
-            step="0.1"
+            step="0.01"
             onChange={handleChange}
           />
           <label htmlFor='source_vol'>Source Volume</label>
@@ -88,7 +88,7 @@ const CreateSolution = () => {
             type='number' 
             name='source_vol' 
             placeholder="Source Volume"
-            step="any" 
+            step="0.001" 
             onChange={handleChange}
             disabled value={String(sourceVol)}
           />

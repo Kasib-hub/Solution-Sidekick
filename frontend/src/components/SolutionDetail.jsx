@@ -39,13 +39,13 @@ const SolutionDetail = ({solution}) => {
           </thead>
           <tbody>
             <tr>
-              <td>{solution.source_conc}</td>
+              <td>{Number(solution.source_conc).toString()}</td>
               <td>&#215;</td>
-              <td>{solution.source_vol}</td>
+              <td>{Number(solution.source_vol).toString()}</td>
               <td>&#61;</td>
-              <td>{solution.final_conc}</td>
+              <td>{Number(solution.final_conc).toString()}</td>
               <td>&#215;</td>
-              <td>{solution.final_vol}</td>
+              <td>{Number(solution.final_vol).toString()}</td>
             </tr>
           </tbody>
         </Table>

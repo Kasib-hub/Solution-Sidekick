@@ -15,7 +15,7 @@ class Solution(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     source_conc = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.001)])
     source_vol = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.001)])
-    final_conc = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.001)])
+    final_conc = models.DecimalField(max_digits=10, decimal_places=8, validators=[MinValueValidator(0.000001)])
     final_vol = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.001)])
 
     def __str__(self) -> str:

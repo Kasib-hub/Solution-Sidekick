@@ -75,7 +75,7 @@ const EditSolution = ({solution}) => {
             type='number' 
             name='source_conc' 
             placeholder="Source concentration"
-            step="0.001"
+            step="0.01"
             onChange={handleChange}
             value={inputs.source_conc}
           />
@@ -93,7 +93,7 @@ const EditSolution = ({solution}) => {
             type='number' 
             name='final_conc' 
             placeholder="Final concentration" 
-            step="0.001" 
+            step="any" 
             onChange={handleChange}
             value={inputs.final_conc}
           />
@@ -102,7 +102,6 @@ const EditSolution = ({solution}) => {
             type='number' 
             name='final_vol' 
             placeholder="Final volume"
-            step="0.001" 
             onChange={handleChange}
             value={inputs.final_vol}
           />
