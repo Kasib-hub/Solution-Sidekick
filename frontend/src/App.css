@@ -15,12 +15,7 @@
   align-items: center;
 }
 
-.detail-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .card {
   padding: 2em;
@@ -48,6 +43,24 @@
   background-color: var(--violet);
 }
 
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  background-color: rgb(221, 76, 105);
+  color: var(--cream);
+}
+
+.deleteBtn:hover {
+  background-color: rgb(150, 54, 73);
+}
+
+.deleteBtn:active {
+  background-color: rgb(150, 54, 73);
+}
+
+
 .general-box {
   display: flex;
   margin: 1rem;
@@ -60,6 +73,30 @@
   width: 50%;
   border-radius: 1rem;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.comment-box {
+  display: flex;
+  margin: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: var(--cream);
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  text-align: left;
+  width: 50%;
+  border-radius: 1rem;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 form {
@@ -90,13 +127,17 @@ textarea {
   font-size: 14px;
 }
 
-/* .instructions-text {
-  margin-bottom: 20px;
-  border: none;
-  border-bottom: solid 2px var(--violet);
-  border-bottom-style: solid;
-  background-color: var(--cream);
-} */
+.instructions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 0 0;
+}
+
+.instructions button{
+  width: 12rem;
+}
 
 .title-likes {
   display: flex;
@@ -112,7 +153,15 @@ textarea {
 
 .sol-links {
   display: flex;
+  justify-content: space-around;
+  width: 25%;
+  height: 30%;
+}
+
+.comment-map {
+  display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .NavBar Link {
@@ -123,6 +172,12 @@ textarea {
   color: var(--gray);
   font-weight: 700;
   font-size: 14px;
+}
+
+.sol-btns {
+  display: flex;
+  justify-content: space-evenly;
+  width: 30%;
 }
 
 .popup {

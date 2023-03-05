@@ -28,8 +28,8 @@ const SolutionDetail = ({solution}) => {
           <p></p>
           <h2>{solution.title}</h2>
           <span><img src={ThumbsUpSelected} alt='likes img'></img></span>
-        </div>
-        <p className='creator'>by {solution.creator_name} at {solution.created_at}</p>
+        </div><br />
+        <p className='creator'>by {solution.creator_name} at {solution.created_at}</p><br />
         <Table striped className='formula-values'>
           <thead>
             <tr className='overlay'>
@@ -52,22 +52,22 @@ const SolutionDetail = ({solution}) => {
               <td>&#215;</td>
               <td>{Number(solution.final_vol).toString()}</td>
             </tr>
-          </tbody>
+          </tbody><br />
         </Table>
         <div className='instructions'>
-          <p>{solution.instructions}</p>
-          <button onClick={handleClick} className='submitBtn'><h3>Did you know?</h3></button>
+          <p>{solution.instructions}</p><br />
+          <button onClick={handleClick} className='submitBtn'><h3>Did you know?</h3></button><br />
           {!clicked ? <p></p> : <LoadingSpinner wikiArticle={wikiArticle}/>}
 
         </div>
           {
             solution.creator !== userID ? <p></p>
-            : <div>
+            : <div className='sol-btns'>
                 <Link to={`/solution/${solution.id}/edit`}>
                   <button className='submitBtn'>EDIT</button>
                 </Link>
                 <Link to={`/solution/${solution.id}/delete`}>
-                  <button className='submitBtn'>DELETE</button>
+                  <button className='deleteBtn'>DELETE</button>
                 </Link>
               </div>
           }

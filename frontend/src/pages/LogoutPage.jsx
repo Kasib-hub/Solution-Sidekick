@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import { loginWithToken } from "../api/SolutionAPI"
 
 const LogoutPage = () => {
 

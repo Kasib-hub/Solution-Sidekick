@@ -11,13 +11,13 @@ const SolutionList = ({solutions}) => {
           return (
             <div key={idx} className='map-item'>
               {/* show likes here somewhere */}
-              <div className="sol-links">
+              <div className="title-likes">
                 <p></p>
                 <h3>{solution.title}</h3><span><LikesOnSolution solution={solution}/></span>
-              </div>
+              </div><br />
 
-              <p>by {solution.creator_name} at {solution.created_at}</p>
-              <p>{solution.instructions}</p>
+              <p className="subtext">by {solution.creator_name} at {solution.created_at}</p>
+              <p>{solution.instructions}</p><br />
               <div>
                 <Link to={`/solution/${solution.id}`}>View Solution</Link>
                 {/* comments/likes should go here somewhere  */}

@@ -29,10 +29,13 @@ const LoginPage = () => {
     <div className="general-box">
       <h3>Login Page</h3>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username</label>
         <input type="text" name="username" placeholder="Enter Username" />
+        <label htmlFor="password">Password</label>
         <input type="password" name="password" placeholder="Enter password" />
-        <input type="email" name="email" placeholder="Enter Email" />
-        <input type="submit" value="submit" />
+        <label htmlFor="email">Email</label>
+        <input type="email" name="email" placeholder="Enter Email" /><br />
+        <button type="submit" className="submitBtn">Login</button>
       </form>
     </div>
 

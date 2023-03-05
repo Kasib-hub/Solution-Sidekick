@@ -140,7 +140,7 @@ const CreateSolution = () => {
             onChange={handleChange}
             required
           />
-
+          <br />
           <input
             className="instructions-text"
             type='text' 
@@ -149,6 +149,7 @@ const CreateSolution = () => {
             value={instructions}
             readOnly
           />
+          <br />
           <button className="submitBtn" type='submit'>Save Solution{<img src={Flask} alt="Flask Icon" />}</button>
           {/* <label htmlFor='instructions'>Instructions</label> */}
         </form>

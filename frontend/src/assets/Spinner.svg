@@ -10,12 +10,12 @@
 
       path {
         stroke-dasharray: 50;
-        animation: dash 10s linear;
+        animation: dash 10s linear infinite;
       }
 
       polyline {
         stroke-dasharray: 50;
-        animation: dash 8s linear;
+        animation: dash 8s linear infinite;
       }
 
       line {

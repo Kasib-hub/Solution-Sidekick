@@ -24,7 +24,7 @@ const CreateComment = ({solutionID, updateComments}) => {
     <div className="general-box">
      <form onSubmit={handleSubmit}>
       <p>Share your thoughts on the Solution</p>
-      <textarea name="message" placeholder="Make a Comment"/>
+      <textarea name="message" placeholder="Make a Comment"/><br />
       <button className="submitBtn" type='submit'>Post Comment</button>
      </form>
     </div> 

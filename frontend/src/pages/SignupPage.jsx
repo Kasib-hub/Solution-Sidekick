@@ -33,14 +33,17 @@ const SignupPage = () => {
   }
 
   return (
-    <div>
-      <h3>Sign up to Save some Solutions!<img src={Flask} alt="" /></h3>
+    <div className="general-box">
+      <h3>Sign up to Save some Solutions!</h3>
       
       <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username</label>
         <input type="text" name="username" placeholder="Enter Username" />
+        <label htmlFor="password">Password</label>
         <input type="password" name="password" placeholder="Enter password" />
-        <input type="email" name="email" placeholder="Enter Email" />
-        <input type="submit" value="submit" />
+        <label htmlFor="email">Email</label>
+        <input type="email" name="email" placeholder="Enter Email" /><br />
+        <button type="submit" className="submitBtn">Sign Up</button>
       </form>
 
       {/* style the error message to be different color. Purple? */}
