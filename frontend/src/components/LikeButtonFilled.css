@@ -1,0 +1,5 @@
+.likes-filled {
+  background-color: var(--cream);
+  transition: all 0.3s;
+  cursor: auto;
+}

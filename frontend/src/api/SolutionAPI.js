@@ -136,6 +136,21 @@ const fetchLikesbySolution = (solutionID) => {
     .catch(error => alert(error))
 }
 
+const createLike = (likeObj, solutionID) => {
+  const token = userToken()
+  fetch(`${BASE_URL}solution_api/${solutionID}/likes`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}`
+    },
+    body: JSON.stringify(commentObj)
+  })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => alert(error))
+}
+
 // stores token in a cookie
 const loginWithToken = (userData) => {
   fetch(`${BASE_URL}accounts/get-token`, {
@@ -187,6 +202,7 @@ export {
   putCommentbyId,
   deleteCommentbyId,
   fetchLikesbySolution,
+  createLike,
   createSolution,
   putSolutionbyId,
   deleteSolutionbyId,

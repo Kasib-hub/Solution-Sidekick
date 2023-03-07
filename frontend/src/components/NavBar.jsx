@@ -10,6 +10,9 @@ const NavBar = () => {
       <div className={NavBarCSS.login_as}>
         <span>Logged in as: {username}</span>
       </div>
+      <div>
+        <h3>Solution-Sidekick</h3>
+      </div>
       <div className={NavBarCSS.links}>
         <Link to='/'>Home</Link>
         <span> | </span>

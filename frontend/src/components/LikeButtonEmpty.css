@@ -1,0 +1,8 @@
+.likes {
+  background-color: var(--cream);
+  transition: all 0.3s;
+}
+
+.likes:hover {
+  background-color: var(--corn);
+}
