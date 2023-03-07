@@ -8,6 +8,8 @@ const EditSolution = ({solution}) => {
   
   const navigate = useNavigate()
   const [inputs, setInputs] = useState({
+    title: solution.title,
+    units: solution.units,
     source_conc: solution.source_conc,
     final_conc: solution.final_conc,
     final_vol: solution.final_vol
@@ -39,6 +41,7 @@ const EditSolution = ({solution}) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     let solutionObj = {
+      "units" : event.target.units.value,
       "source_conc": event.target.source_conc.value,
       "source_vol": event.target.source_vol.value,
       "final_conc": event.target.final_conc.value,
@@ -59,7 +62,7 @@ const EditSolution = ({solution}) => {
 
   // goal is to have form be display flexed with labels, nice big submit button
   return (
-      <div>
+      <div className="general-box">
         <h2>EDIT A Solution</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='title'>Title</label>
@@ -68,9 +71,40 @@ const EditSolution = ({solution}) => {
             name='title' 
             placeholder="Enter a Title" 
             onChange={handleChange}
-            value={solution.title}
+            value={inputs.title}
             required
           />
+          <p>Unit of Measure</p>
+          <div className="radio-btns">
+            <div>
+              <input 
+                type='radio' 
+                name='units'
+                value='µL'
+                checked={inputs.units === 'µL'}
+                onChange={handleChange}
+              /> &#181;L
+            </div>
+            <div>
+              <input 
+                type='radio' 
+                name='units'
+                value='mL'
+                checked={inputs.units === 'mL'}
+                onChange={handleChange}
+              /> mL
+            </div>
+            <div>
+              <input 
+                type='radio' 
+                name='units'
+                value='L'
+                checked={inputs.units === 'L'}
+                onChange={handleChange}
+              /> L
+            </div>
+
+          </div>
           <label htmlFor='source_conc'>Source Concentration</label>
           <input 
             type='number' 
@@ -109,8 +143,7 @@ const EditSolution = ({solution}) => {
             value={inputs.final_vol}
             required
           />
-          <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
-          <label htmlFor='instructions'>Instructions</label>
+          <br />
           <input 
             type='text' 
             name='instructions' 
@@ -118,6 +151,9 @@ const EditSolution = ({solution}) => {
             value={instructions}
             readOnly
           />
+          <br />
+          <button className="submitBtn" type='submit'>Save {<img src={Flask} alt="Flask Icon" />}</button>
+
         </form>
         
       </div>

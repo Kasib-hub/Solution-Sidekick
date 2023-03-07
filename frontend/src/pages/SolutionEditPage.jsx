@@ -23,9 +23,7 @@ const SolutionEditPage = () => {
   }
 
   return (
-    <div>
       <EditSolution solution={solution} />
-    </div>
   )
 
 }
