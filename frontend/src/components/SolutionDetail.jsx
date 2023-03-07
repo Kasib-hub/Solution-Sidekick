@@ -16,7 +16,7 @@ const SolutionDetail = ({solution}) => {
   const [wikiArticle, setWikiArticle] = useState()
   const [clicked, setClicked] = useState(false)
   // this should also make an api call to check if it has been liked by the user
-  const [isLiked, setIsLiked] = useState(false)
+  
   const [userLike, setUserLike] = useState(0)
 
   // I also need to make another call to my backend that will make a call to the external api, make two urls - wiki and web
@@ -37,8 +37,6 @@ const SolutionDetail = ({solution}) => {
           <p></p>
           <h2>{solution.title}</h2>
           <LikesFromUser setUserLike={setUserLike} solution={solution} userLike={userLike}/>
-          {isLiked ? <LikeButtonFilled /> : <LikeButtonEmpty setIsLiked={setIsLiked}/>}
-          {/* <button className='likes'><img src={ThumbsUpSelected} alt='likes img'></img></button> */}
         </div><br />
         <p className='creator'>by {solution.creator_name} at {solution.created_at}</p><br />
         <Table striped className='formula-values'>

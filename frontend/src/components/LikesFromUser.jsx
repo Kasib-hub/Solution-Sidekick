@@ -1,11 +1,13 @@
 import { fetchLikesbySolution } from "../api/SolutionAPI";
 import { useState, useEffect } from "react";
 import ThumbsUp from "../assets/ThumbsUp.svg"
+import LikeButtonEmpty from "./LikeButtonEmpty";
+import LikeButtonFilled from "./LikeButtonFilled";
 
 const LikesFromUser = ({setUserLike, solution, userLike}) => {
   const userID = Number(localStorage.getItem('userID'))
   const [likes, setLikes] = useState()
-  
+  const [isLiked, setIsLiked] = useState(false)
 
   useEffect(() => {
     fetchLikesbySolution(solution.id).then(data => {
@@ -13,12 +15,11 @@ const LikesFromUser = ({setUserLike, solution, userLike}) => {
     })
   }, [])
 
-  if (userLike) {return <span><img src={ThumbsUp} alt="thumbs up"/></span>}
+  if (userLike > 0 || isLiked) {return <LikeButtonFilled />}
 
   return (
     <div>
-      <p>you've liked this {userLike}</p>
-      <span><img src={ThumbsUp} alt="thumbs up"/></span>
+      <LikeButtonEmpty setIsLiked={setIsLiked}/>
     </div>
   );
   

@@ -144,7 +144,7 @@ const createLike = (likeObj, solutionID) => {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
     },
-    body: JSON.stringify(commentObj)
+    body: JSON.stringify(likeObj)
   })
     .then(res => res.json())
     .then(data => console.log(data))
