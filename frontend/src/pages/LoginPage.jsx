@@ -26,6 +26,7 @@ const LoginPage = () => {
   }
 
   return (
+    
     <div className="general-box">
       <h3>Login Page</h3>
       <form onSubmit={handleSubmit}>
