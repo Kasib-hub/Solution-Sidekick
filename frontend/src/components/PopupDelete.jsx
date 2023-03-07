@@ -19,9 +19,12 @@ const PopupDelete = ({comment, setTrigger, updateComments}) => {
   return (comment) ? (
     <div className="popup">
       <div className="popup-box">
-        <p>Are you sure you want to delete your comment? {comment.message}</p>
-        <button onClick={handleDeleteClick}>Yes, Delete</button>
-        <button onClick={handleBackClick}>No, Go Back</button>
+        <p>Are you sure you want to delete your comment?</p>
+        <div className="prompt-comment">
+          <button className="submitBtn" onClick={handleBackClick}>No, Go Back</button>
+          <button className="deleteBtn" onClick={handleDeleteClick}>Yes, Delete</button>
+        </div>
+
       </div>
 
     </div> 

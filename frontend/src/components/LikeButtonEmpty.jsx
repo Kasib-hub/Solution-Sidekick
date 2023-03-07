@@ -1,7 +1,4 @@
 import { useParams } from "react-router-dom";
-import { fetchLikesbySolution } from "../api/SolutionAPI";
-import { useState, useEffect } from "react";
-import ThumbsUp from "../assets/ThumbsUp.svg"
 import ThumbsUpSelected from '../assets/ThumbsUpSelected.svg'
 import './LikeButtonEmpty.css'
 import { createLike } from "../api/SolutionAPI";

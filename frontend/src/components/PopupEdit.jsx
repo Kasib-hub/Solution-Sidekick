@@ -30,8 +30,11 @@ const PopupEdit = ({comment, setTrigger, updateComments}) => {
         <p>Edit Your Comment</p>
         <form onSubmit={handleSubmit}>
           <textarea name="message" rows="6" cols="60" onChange={handleChange} value={editComment}/>
-          <button type="submit"><img src={FloppyDisk} alt='floppy disk save'/></button>
-          <button type="button" onClick={handleClick}>Go Back</button>
+          <div className="prompt-comment">
+            <button className="submitBtn" id="save-icon" type="submit"><img src={FloppyDisk} alt='floppy disk save'/></button>
+            <button className="submitBtn" type="button" onClick={handleClick}>Go Back</button>
+          </div>
+
         </form>
       </div>
 

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import './SolutionDetail.css'
 import Table from 'react-bootstrap/Table';
 import LoadingSpinner from './LoadingSpinner'
-import LikeButtonEmpty from './LikeButtonEmpty';
-import LikeButtonFilled from './LikeButtonFilled';
 import LikesFromUser from './LikesFromUser';
 
 
@@ -24,10 +22,6 @@ const SolutionDetail = ({solution}) => {
     getWikiArticle(solution.title).then(data => setWikiArticle(data))
     setClicked(true)
   }
-
-  useEffect(() => {
-
-  }, [])
 
   // so if the userID matches an api call for the likes under solutoin then render the colored thumb otherwise the blank thumb that is a button
   if (!solution) {return <h2>Loading...</h2>}
@@ -81,8 +75,6 @@ const SolutionDetail = ({solution}) => {
                 </Link>
               </div>
           }
-
-
       </div>
   )
 }

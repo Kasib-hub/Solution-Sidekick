@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
 import Trash from '../assets/Trash.svg'
 import Modify from '../assets/Modify.svg'
 import { useState } from "react"
 import PopupDelete from "./PopupDelete"
 import PopupEdit from "./PopupEdit"
+
 // take in the comments list for this solution
 const CommentList = ({comments, updateComments}) => {
 
@@ -14,8 +14,7 @@ const CommentList = ({comments, updateComments}) => {
 
   return (
     <div className="comment-box">
-      
-      {/* left align comments title */}
+
       <h3>Comments</h3><br />
       <hr />
       {
@@ -36,6 +35,7 @@ const CommentList = ({comments, updateComments}) => {
               
               {
                 // check if the author of the comment is the same as the logged in user that way they can easily edit/delete comments
+                // set the comment to state so that we can make popups later
                 comment.author !== userID
                 ? <p></p>
                 : <div className="sol-links">
@@ -47,7 +47,6 @@ const CommentList = ({comments, updateComments}) => {
                     </button>
                   </div>
               }
-              
               <br /><br />
             </div>  
           )

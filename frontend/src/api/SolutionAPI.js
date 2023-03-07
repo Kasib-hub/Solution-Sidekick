@@ -1,5 +1,3 @@
-// so now all of my requests need tokens, pass into function?
-// logging out is deleting the token and navigating back to sign up page.
 
 import { userToken } from '../helpers/helperFunctions';
 import axios from 'axios'
