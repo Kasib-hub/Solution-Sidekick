@@ -217,3 +217,9 @@ textarea {
 #save-icon {
   width: 5rem;
 }
+
+
+.homepage-blurb {
+  margin: 10px 80px;
+  text-align: left;
+}
