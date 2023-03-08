@@ -151,7 +151,7 @@ const createLike = (likeObj, solutionID) => {
 
 // stores token in a cookie
 const loginWithToken = (userData) => {
-  fetch(`${BASE_URL}accounts/get-token`, {
+  fetch(`${BASE_URL}solution_api/accounts/get-token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -165,18 +165,6 @@ const loginWithToken = (userData) => {
     localStorage.setItem('userID', String(data.user_id))
     localStorage.setItem('username', data.username)
   })
-}
-
-const getUserData = () => {
-  const token = userToken()
-  return axios.get(`${BASE_URL}accounts/get-user`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Token ${token}`
-    }
-  })
-    .then(res => res.data)
-    .catch(error => console.log(error))
 }
 
 const getWikiArticle = (search) => {
@@ -205,6 +193,5 @@ export {
   putSolutionbyId,
   deleteSolutionbyId,
   getWikiArticle,
-  getUserData,
   loginWithToken,
 };

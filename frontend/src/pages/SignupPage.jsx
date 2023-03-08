@@ -21,7 +21,7 @@ const SignupPage = () => {
   }
 
   const signUp = async(userData) => {
-    const res = await fetch(`${BASE_URL}accounts/signup`, {
+    const res = await fetch(`${BASE_URL}solution_api/accounts/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

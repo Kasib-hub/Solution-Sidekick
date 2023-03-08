@@ -1,5 +1,5 @@
 ## wine_api/urls.py
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 # remember these are paths for the api, a nested api
@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:solution_pk>/comments', views.CommentsView.as_view(), name='comment_list'),
     path('<int:solution_pk>/comments/<int:comment_pk>', views.CommentsView.as_view(), name='comment_detail'),
     path('third_party', views.ThirdPartyView.as_view()),
+    path('accounts/', include('accounts.urls')),
 ]
