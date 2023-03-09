@@ -11,8 +11,7 @@ import SolutionDetailPage from './pages/SolutionDetailPage';
 import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css'
 import NavBar from './components/NavBar'
-import { fetchAllSolutions } from './api/SolutionAPI';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
 
@@ -27,9 +26,9 @@ const App = () => {
             <Route exact path='/'  element={<HomePage />} />
             <Route path='/solution_list' element={<SolutionListPage />}/>
             <Route path='/create_solution' element={<CreateSolutionPage />}/>
-            <Route path='/solution/:solutionID' element={<SolutionDetailPage/>}/>
-            <Route path='/solution/:solutionID/edit' element={<SolutionEditPage  />}/>
-            <Route path='/solution/:solutionID/delete' element={<DeleteSolutionPage />}/>
+            <Route path='/:solutionID' element={<SolutionDetailPage/>}/>
+            <Route path='/:solutionID/edit' element={<SolutionEditPage  />}/>
+            <Route path='/:solutionID/delete' element={<DeleteSolutionPage />}/>
             <Route path='/logout' element={<LogoutPage />}/>
           </Route>
 

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { loginWithToken } from "../api/SolutionAPI"
+import { getUserData, loginWithToken } from "../api/SolutionAPI"
 
 const LoginPage = () => {
 
@@ -15,13 +15,20 @@ const LoginPage = () => {
     }
     
     loginWithToken(userData)
+      .then(res => res.json())
+      // token accessed at data.token, store in cookie
+      .then(data => {
+        document.cookie = `token=${data.token}; path=/;`
+      })
+      .catch(error => alert(error))
 
+    getUserData()
     
     // set timeout to give app time to retrieve new token and refresh to reflect username at top
     setTimeout(() => {
-      navigate('/solution_list')
+      navigate('/')
       window.location.reload()
-    }, 500)
+    }, 1000)
     
   }
 

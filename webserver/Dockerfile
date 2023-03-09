@@ -15,7 +15,7 @@ WORKDIR /frontend
 # variable when the image is *built* (not run).  For local
 # development, localhost; for production, your EC2's IP address
 ARG VITE_API_URL=44.198.174.221
-ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_API_URL=solution_api
 
 COPY ./frontend/package.json .
 RUN npm install

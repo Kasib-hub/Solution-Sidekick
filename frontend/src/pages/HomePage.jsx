@@ -1,13 +1,16 @@
-import star from '../assets/star.svg'
-import HomePageCSS from './HomePage.module.css'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { getUserData } from '../api/SolutionAPI'
 
 const HomePage = () => {
 
-  
-
+//  useEffect(() => {
+//   getUserData().then(data => {
+//     setUserID(data.user_id)
+//     localStorage.setItem('userID', String(res.data.user_id))
+//     localStorage.setItem('username', res.data.username)
+//   })
+//  }, [])
 
   return (
       <div className='general-box'>
