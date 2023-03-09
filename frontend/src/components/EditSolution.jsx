@@ -32,9 +32,9 @@ const EditSolution = ({solution}) => {
   useEffect(() => {
     isNaN(sourceVol) || isNaN(remainderVol) 
     ? setInstructions(solution.instructions)
-    : setInstructions(`Pour ${String(sourceVol)} of source volume into ${String(remainderVol)} of solvent`)
+    : setInstructions(`Pour ${String(sourceVol)} ${inputs.units} of source volume into ${String(remainderVol)} ${inputs.units} of solvent`)
     
-  }, [sourceVol, remainderVol])
+  }, [sourceVol, remainderVol, inputs.units])
 
 
   // handleSubmit makes the POST request
@@ -55,7 +55,7 @@ const EditSolution = ({solution}) => {
         if (res.ok) {
           alert("Solution editted Successfully")
           navigate('/solution_list')
-        } else {alert("Incomplete form")}
+        } else {alert("Incomplete form\nEnsure measurements are realistic\nDon't submit solutions that require measurements past 2 decimal points.")}
       })
 
     setTimeout(() => {

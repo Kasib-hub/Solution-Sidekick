@@ -54,7 +54,7 @@ const CreateSolution = () => {
         if (res.ok) {
           alert("Solution Created Successfully")
           navigate('/solution_list')
-        } else {alert("Incomplete form")}
+        } else {alert("Incomplete form\nEnsure measurements are realistic\nDon't submit solutions that require measurements past 2 decimal points.")}
       })
   }
   // update formula parameters in a react way

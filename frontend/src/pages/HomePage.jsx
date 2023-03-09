@@ -1,16 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { getUserData } from '../api/SolutionAPI'
 
 const HomePage = () => {
-
-//  useEffect(() => {
-//   getUserData().then(data => {
-//     setUserID(data.user_id)
-//     localStorage.setItem('userID', String(res.data.user_id))
-//     localStorage.setItem('username', res.data.username)
-//   })
-//  }, [])
 
   return (
       <div className='general-box'>

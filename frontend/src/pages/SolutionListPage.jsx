@@ -13,7 +13,7 @@ const SolutionListPage = () => {
   return (
     <div className="general-box">
       <h2>Solution List</h2><br/>
-      {!solutions ? <p></p> : <SolutionList solutions={solutions}/>}
+      {!solutions ? <p>Loading...</p> : <SolutionList solutions={solutions}/>}
     </div>
   )
 

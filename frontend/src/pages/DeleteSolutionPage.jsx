@@ -19,13 +19,15 @@ const DeleteSolutionPage = () => {
 
   const handleClick = () => {
     deleteSolutionbyId(solution.id).then(data => console.log(data))
-    navigate(`/solution_list`)
+    setTimeout(() => {
+      navigate('/')
+    }, 500)
   }
 
   if (!solution) {return <h2>Loading...</h2>}
 
   return (
-      <div>
+      <div className='general-box'>
           <p>Are you sure you want to delete {solution.title}?</p>
           <p>Created by {solution.creator_name} at {solution.created_at}</p>
           <button className={DeleteSolutionPageCSS.submitBtn} onClick={handleClick}>Yes, DELETE</button>
