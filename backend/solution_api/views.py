@@ -120,7 +120,7 @@ class ThirdPartyView(APIView):
             body = search_res.json()
             second_search = body['organic_results'][0]['link'].split('/')[-1]
         else:
-            return Response({'Error': 'error occured'})
+            return Response({'Error': f'error occured {api_key}'})
 
         print('this is clean_+_+_+_+_+', second_search)
         res = requests.get(f'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles={second_search}&format=json&exsentences=5&explaintext=1&formatversion=2&origin=*')

@@ -26,9 +26,9 @@ const App = () => {
             <Route exact path='/'  element={<HomePage />} />
             <Route path='/solution_list' element={<SolutionListPage />}/>
             <Route path='/create_solution' element={<CreateSolutionPage />}/>
-            <Route path='/:solutionID' element={<SolutionDetailPage/>}/>
-            <Route path='/:solutionID/edit' element={<SolutionEditPage  />}/>
-            <Route path='/:solutionID/delete' element={<DeleteSolutionPage />}/>
+            <Route path='solution/:solutionID' element={<SolutionDetailPage/>}/>
+            <Route path='solution/:solutionID/edit' element={<SolutionEditPage  />}/>
+            <Route path='solution/:solutionID/delete' element={<DeleteSolutionPage />}/>
             <Route path='/logout' element={<LogoutPage />}/>
           </Route>
 

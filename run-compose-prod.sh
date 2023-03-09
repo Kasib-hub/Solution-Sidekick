@@ -8,6 +8,8 @@ export NEW_VERSION=$3
 
 docker-compose -f docker-compose.prod.yml build --no-cache
 docker-compose -f docker-compose.prod.yml up -d
+docker-compose --env-file .env up
+
 
 # make sure the postgres container is ready, then run migrations
 sleep 10 

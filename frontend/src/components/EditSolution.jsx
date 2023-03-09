@@ -51,7 +51,17 @@ const EditSolution = ({solution}) => {
       "creator": solution.creator
     }
     putSolutionbyId(solution.id, solutionObj)
-    navigate('/solution_list')
+      .then(res => {
+        if (res.ok) {
+          alert("Solution editted Successfully")
+          navigate('/solution_list')
+        } else {alert("Incomplete form")}
+      })
+
+    setTimeout(() => {
+      navigate('/solution_list')
+      window.location.reload()
+    }, 500)
   }
   // update formula parameters in a react way
   const handleChange = (event) => {

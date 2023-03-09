@@ -44,7 +44,7 @@ const createSolution = (solutionObj) => {
 
 const putSolutionbyId = (solutionID, updatedData) => {
   const token = userToken()
-  fetch(`http://44.198.174.221/solution_api/${solutionID}`, {
+  return fetch(`http://44.198.174.221/solution_api/${solutionID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -52,7 +52,6 @@ const putSolutionbyId = (solutionID, updatedData) => {
     },
     body: JSON.stringify(updatedData)
   })
-    .then(res => res.ok ? alert('Successfully edited the solution') : alert('put no good'))
 }
 
 const deleteSolutionbyId = (solutionID) => {
@@ -176,7 +175,7 @@ const getUserData = () => {
 
 const getWikiArticle = (search) => {
   const token = userToken()
-  return axios.post(`${FRONT_URL}/third_party`, {"data": search}, {
+  return axios.post(`http://44.198.174.221/solution_api/third_party`, {"data": search}, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
