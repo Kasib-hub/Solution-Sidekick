@@ -6,7 +6,7 @@ const BASE_URL = import.meta.env.VITE_API_URL
 // add a token?
 const fetchAllSolutions = () => {
   const token = userToken()
-  return fetch(`http://${BASE_URL}/solution_api`, {
+  return fetch(`http://${BASE_URL}/solution_api/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const fetchSolutionbyId = (solutionID) => {
 
 const createSolution = (solutionObj) => {
   const token = userToken()
-  return fetch(`${FRONT_URL}/`, {
+  return fetch(`http://${BASE_URL}/solution_api/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ const createLike = (likeObj, solutionID) => {
 
 // stores token in a cookie
 const loginWithToken = (userData) => {
-  return fetch(`${FRONT_URL}/accounts/get-token`, {
+  return fetch(`http://${BASE_URL}/solution_api/accounts/get-token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ const loginWithToken = (userData) => {
 
 const getUserData = () => {
   const token = userToken()
-  return axios.get(`${FRONT_URL}/accounts/get-user`, {
+  return axios.get(`http://${BASE_URL}/solution_api/accounts/get-user`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -186,7 +186,6 @@ const getWikiArticle = (search) => {
 }
 
 export {
-  FRONT_URL,
   fetchAllSolutions,
   fetchSolutionbyId,
   fetchCommentsbySolution,

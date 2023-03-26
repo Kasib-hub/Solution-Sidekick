@@ -3,6 +3,7 @@ import { useState } from "react"
 // consider using state to keep error message to user
 const SignupPage = () => {
 
+  const BASE_URL = import.meta.env.VITE_API_URL
   const navigate = useNavigate()
   const [err, setErr] = useState()
 
@@ -19,7 +20,7 @@ const SignupPage = () => {
   }
 
   const signUp = async(userData) => {
-    const res = await fetch(`http://${BASE_URL}/accounts/signup`, {
+    const res = await fetch(`http://${BASE_URL}/solution_api/accounts/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
