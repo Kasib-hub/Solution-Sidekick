@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { FRONT_URL } from "../api/SolutionAPI"
-import Flask  from "../assets/FlaskFull.svg"
 // consider using state to keep error message to user
 const SignupPage = () => {
 
@@ -21,7 +19,7 @@ const SignupPage = () => {
   }
 
   const signUp = async(userData) => {
-    const res = await fetch(`${FRONT_URL}/accounts/signup`, {
+    const res = await fetch(`http://${BASE_URL}/accounts/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
