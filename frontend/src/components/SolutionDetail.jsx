@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {  getWikiArticle } from '../api/SolutionAPI'
 import { Link } from 'react-router-dom'
 import './SolutionDetail.css'
