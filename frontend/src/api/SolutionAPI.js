@@ -1,12 +1,12 @@
 
 import { userToken } from '../helpers/helperFunctions';
 import axios from 'axios'
-const FRONT_URL = import.meta.env.VITE_API_URL
+const BASE_URL = import.meta.env.VITE_API_URL
 
 // add a token?
 const fetchAllSolutions = () => {
   const token = userToken()
-  return fetch(`${FRONT_URL}/`, {
+  return fetch(`http://${BASE_URL}/solution_api/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ const fetchAllSolutions = () => {
 
 const fetchSolutionbyId = (solutionID) => {
   const token = userToken()
-  return fetch(`http://44.198.174.221/solution_api/${solutionID}`, {
+  return fetch(`http://${BASE_URL}/solution_api/${solutionID}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const fetchSolutionbyId = (solutionID) => {
 
 const createSolution = (solutionObj) => {
   const token = userToken()
-  return fetch(`${FRONT_URL}/`, {
+  return fetch(`http://${BASE_URL}/solution_api/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const createSolution = (solutionObj) => {
 
 const putSolutionbyId = (solutionID, updatedData) => {
   const token = userToken()
-  return fetch(`http://44.198.174.221/solution_api/${solutionID}`, {
+  return fetch(`http://${BASE_URL}/solution_api/${solutionID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const putSolutionbyId = (solutionID, updatedData) => {
 
 const deleteSolutionbyId = (solutionID) => {
   const token = userToken()
-  return axios.delete(`http://44.198.174.221/solution_api/${solutionID}`, {
+  return axios.delete(`http://${BASE_URL}/solution_api/${solutionID}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -68,7 +68,7 @@ const deleteSolutionbyId = (solutionID) => {
 
 const fetchCommentsbySolution = (solutionID) => {
   const token = userToken()
-  return axios.get(`http://44.198.174.221/solution_api/${solutionID}/comments`, {
+  return axios.get(`http://${BASE_URL}/solution_api/${solutionID}/comments`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -80,7 +80,7 @@ const fetchCommentsbySolution = (solutionID) => {
 
 const createComment = (commentObj, solutionID) => {
   const token = userToken()
-  fetch(`http://44.198.174.221/solution_api/${solutionID}/comments`, {
+  fetch(`http://${BASE_URL}/solution_api/${solutionID}/comments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ const createComment = (commentObj, solutionID) => {
 
 const putCommentbyId = (solutionID, commentID, updatedData) => {
   const token = userToken()
-  fetch(`http://44.198.174.221/solution_api/${solutionID}/comments/${commentID}`, {
+  fetch(`http://${BASE_URL}/solution_api/${solutionID}/comments/${commentID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const putCommentbyId = (solutionID, commentID, updatedData) => {
 
 const deleteCommentbyId = (solutionID, commentID) => {
   const token = userToken()
-  return axios.delete(`http://44.198.174.221/solution_api/${solutionID}/comments/${commentID}`, {
+  return axios.delete(`http://${BASE_URL}/solution_api/${solutionID}/comments/${commentID}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -122,7 +122,7 @@ const deleteCommentbyId = (solutionID, commentID) => {
 
 const fetchLikesbySolution = (solutionID) => {
   const token = userToken()
-  return axios.get(`http://44.198.174.221/solution_api/${solutionID}/likes`, {
+  return axios.get(`http://${BASE_URL}/solution_api/${solutionID}/likes`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -134,7 +134,7 @@ const fetchLikesbySolution = (solutionID) => {
 
 const createLike = (likeObj, solutionID) => {
   const token = userToken()
-  fetch(`http://44.198.174.221/solution_api/${solutionID}/likes`, {
+  fetch(`http://${BASE_URL}/solution_api/${solutionID}/likes`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ const createLike = (likeObj, solutionID) => {
 
 // stores token in a cookie
 const loginWithToken = (userData) => {
-  return fetch(`${FRONT_URL}/accounts/get-token`, {
+  return fetch(`http://${BASE_URL}/solution_api/accounts/get-token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ const loginWithToken = (userData) => {
 
 const getUserData = () => {
   const token = userToken()
-  return axios.get(`${FRONT_URL}/accounts/get-user`, {
+  return axios.get(`http://${BASE_URL}/solution_api/accounts/get-user`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -175,7 +175,7 @@ const getUserData = () => {
 
 const getWikiArticle = (search) => {
   const token = userToken()
-  return axios.post(`http://44.198.174.221/solution_api/third_party`, {"data": search}, {
+  return axios.post(`http://${BASE_URL}/solution_api/third_party`, {"data": search}, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
@@ -186,7 +186,6 @@ const getWikiArticle = (search) => {
 }
 
 export {
-  FRONT_URL,
   fetchAllSolutions,
   fetchSolutionbyId,
   fetchCommentsbySolution,

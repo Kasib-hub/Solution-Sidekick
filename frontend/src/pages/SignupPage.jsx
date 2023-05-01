@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useState } from "react"
-import { FRONT_URL } from "../api/SolutionAPI"
-import Flask  from "../assets/FlaskFull.svg"
 // consider using state to keep error message to user
 const SignupPage = () => {
 
+  const BASE_URL = import.meta.env.VITE_API_URL
   const navigate = useNavigate()
   const [err, setErr] = useState()
 
@@ -21,7 +20,7 @@ const SignupPage = () => {
   }
 
   const signUp = async(userData) => {
-    const res = await fetch(`${FRONT_URL}/accounts/signup`, {
+    const res = await fetch(`http://${BASE_URL}/solution_api/accounts/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +43,8 @@ const SignupPage = () => {
         <label htmlFor="email">Email</label>
         <input type="email" name="email" placeholder="Enter Email" /><br />
         <button type="submit" className="submitBtn">Sign Up</button>
-      </form>
+      </form><br />
+      <p>Already have an account? <Link to='/login'>Login!</Link></p>
 
       {/* style the error message to be different color. Purple? */}
       {err ? <p className="err">{err}</p> : <p></p>}
