@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useState } from "react"
 // consider using state to keep error message to user
 const SignupPage = () => {
@@ -43,7 +43,8 @@ const SignupPage = () => {
         <label htmlFor="email">Email</label>
         <input type="email" name="email" placeholder="Enter Email" /><br />
         <button type="submit" className="submitBtn">Sign Up</button>
-      </form>
+      </form><br />
+      <p>Already have an account? <Link to='/login'>Login!</Link></p>
 
       {/* style the error message to be different color. Purple? */}
       {err ? <p className="err">{err}</p> : <p></p>}
