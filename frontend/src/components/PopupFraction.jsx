@@ -1,14 +1,10 @@
 
 
-const PopupFraction = ({comment, setTrigger, updateComments}) => {
+const PopupFraction = ({}) => {
 
   // make api call to delete this comment
 
   const handleDeleteClick = () => {
-    deleteCommentbyId(comment.solution, comment.id)
-    setTimeout(() => {
-      updateComments()
-    }, 250)
     setTrigger(false)
   }
 
@@ -16,7 +12,7 @@ const PopupFraction = ({comment, setTrigger, updateComments}) => {
     setTrigger(false)
   }
 
-  return (comment) ? (
+  return (
     <div className="popup">
       <div className="popup-box">
         <p>Are you sure you want to delete your comment?</p>
@@ -28,7 +24,7 @@ const PopupFraction = ({comment, setTrigger, updateComments}) => {
       </div>
 
     </div> 
-  ) : ""
+  )
 }
 
 export default PopupFraction
