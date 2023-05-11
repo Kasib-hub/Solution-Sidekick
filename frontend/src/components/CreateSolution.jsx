@@ -20,7 +20,7 @@ const CreateSolution = () => {
   const [instructions, setInstructions] = useState(`Pour 0  of source volume into 0 of solvent`)
 
   // switching input for decimal and fractions
-  const [fractionPopup, setFractionPopup] = useState(false)
+  const [fractionPopup, setFractionPopup] = useState()
 
   // calculate needed solute volume in realtime
   useEffect(() => {
@@ -138,7 +138,8 @@ const CreateSolution = () => {
               required
             />
             {/* I want this button to make a popup to enter a fraction as component*/}
-            <button onClick={() => setFractionPopup()}>Enter as Fraction</button>
+            <button type="button" onClick={() => setFractionPopup("15")}>Enter as Fraction</button>
+            
           </div>
          
           <label htmlFor='final_vol'>Final Volume</label>
@@ -162,7 +163,7 @@ const CreateSolution = () => {
           <button className="submitBtn" type='submit'>Save Solution{<img src={Flask} alt="Flask Icon" />}</button>
           {/* <label htmlFor='instructions'>Instructions</label> */}
         </form>
-        
+        {fractionPopup && <PopupFraction popup={fractionPopup} setTrigger={setFractionPopup}/>}
       </div>
   )
 }
