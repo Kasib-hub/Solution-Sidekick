@@ -2,6 +2,7 @@ import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
 import { createSolution } from "../api/SolutionAPI"
 import { useNavigate } from "react-router-dom"
+import PopupFraction from "./PopupFraction"
 
 // needs to take in the single solution object as a prop
 const CreateSolution = () => {
@@ -17,6 +18,9 @@ const CreateSolution = () => {
   const [sourceVol, setsourceVol] = useState(0)
   const [remainderVol, setRemainderVol] = useState(0)
   const [instructions, setInstructions] = useState(`Pour 0  of source volume into 0 of solvent`)
+
+  // switching input for decimal and fractions
+  const [fractionPopup, setFractionPopup] = useState(false)
 
   // calculate needed solute volume in realtime
   useEffect(() => {
@@ -124,14 +128,19 @@ const CreateSolution = () => {
             disabled value={String(sourceVol)}
           />
           <label htmlFor='final_conc'>Final Concentration</label>
-          <input 
-            type='number' 
-            name='final_conc' 
-            placeholder="Final concentration" 
-            step="any" 
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <input 
+              type='number' 
+              name='final_conc' 
+              placeholder="Final concentration" 
+              step="any" 
+              onChange={handleChange}
+              required
+            />
+            {/* I want this button to make a popup to enter a fraction as component*/}
+            <button onClick={() => setFractionPopup()}>Enter as Fraction</button>
+          </div>
+         
           <label htmlFor='final_vol'>Final Volume</label>
           <input 
             type='number' 
