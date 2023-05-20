@@ -15,7 +15,12 @@ const PopupFraction = ({popup, final_conc, setTrigger}) => {
   return (popup) ? (
     <div className="popup">
       <div className="popup-box">
-        <p>Are you sure you want to delete your comment?</p>
+        <p>Enter Final Concentration as a Fraction</p>
+        <form>
+          <input type="number" name="numerator" placeholder="Numerator" />
+          <span> / </span>
+          <input type="number" name="denominator" placeholder="Denominator" />
+        </form>
         <div className="prompt-comment">
           <button className="submitBtn" onClick={handleBackClick}>No, Go Back</button>
           <button className="deleteBtn" onClick={handleFractionClick}>Yes, Delete</button>
