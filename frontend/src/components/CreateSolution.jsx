@@ -138,7 +138,7 @@ const CreateSolution = () => {
               required
             />
             {/* I want this button to make a popup to enter a fraction as component*/}
-            <button type="button" onClick={() => setFractionPopup("15")}>Enter as Fraction</button>
+            <button className="whiteBtn" type="button" onClick={() => setFractionPopup("15")}>Enter as Fraction</button>
             
           </div>
          
