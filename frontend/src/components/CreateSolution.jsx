@@ -128,7 +128,7 @@ const CreateSolution = () => {
             disabled value={String(sourceVol)}
           />
           <label htmlFor='final_conc'>Final Concentration</label>
-          <div>
+          <div className="final-conc-elements">
             <input 
               type='number' 
               name='final_conc' 
