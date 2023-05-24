@@ -22,6 +22,10 @@ const CreateSolution = () => {
   // switching input for decimal and fractions
   const [fractionPopup, setFractionPopup] = useState()
 
+  // need new state for the fractions numerator and denominator
+  const [ numerator, setNumerator ] = useState(0)
+  const [ denominator, setDenominator ] = useState(0)
+
   // calculate needed solute volume in realtime
   useEffect(() => {
     setsourceVol(inputs.final_conc * inputs.final_vol / inputs.source_conc)
@@ -163,7 +167,15 @@ const CreateSolution = () => {
           <button className="submitBtn" type='submit'>Save Solution{<img src={Flask} alt="Flask Icon" />}</button>
           {/* <label htmlFor='instructions'>Instructions</label> */}
         </form>
-        {fractionPopup && <PopupFraction popup={fractionPopup} setTrigger={setFractionPopup}/>}
+        {/* state for fraction inputs needs to be passed here */}
+        {fractionPopup 
+        && 
+        <PopupFraction 
+          popup={fractionPopup} 
+          setTrigger={setFractionPopup}
+          setNumerator={setNumerator}
+          setDenominator={setDenominator}
+        />}
       </div>
   )
 }
