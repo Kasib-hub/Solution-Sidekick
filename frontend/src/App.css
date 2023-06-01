@@ -83,7 +83,10 @@
 
 .final-conc-elements {
   display: flex;
-  justify-content: space-between;
+}
+
+.final-conc-elements button {
+  margin-left: 1rem;
 }
 
 .fraction-inputs {

@@ -44,6 +44,13 @@ const CreateSolution = () => {
     
   }, [sourceVol, remainderVol, inputs.units])
 
+  // handles updating specific state within inputs dictionary
+  const updateInputs = (key, value) => {
+    setInputs(prevState => ({
+      ...prevState, [key]: value
+    }))
+  }
+
   // handleSubmit makes the POST request
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -139,9 +146,11 @@ const CreateSolution = () => {
               placeholder="Final concentration" 
               step="any" 
               onChange={handleChange}
+              value={inputs.final_conc}
               required
             />
             {/* I want this button to make a popup to enter a fraction as component*/}
+            {/* do I even need to pass anything to setFractionPopup? */}
             <button className="whiteBtn" type="button" onClick={() => setFractionPopup("15")}>Enter as Fraction</button>
             
           </div>
@@ -175,6 +184,9 @@ const CreateSolution = () => {
           setTrigger={setFractionPopup}
           setNumerator={setNumerator}
           setDenominator={setDenominator}
+          updateInputs={updateInputs}
+          numerator={numerator}
+          denominator={denominator}
         />}
       </div>
   )
