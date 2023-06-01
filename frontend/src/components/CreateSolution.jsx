@@ -164,12 +164,13 @@ const CreateSolution = () => {
             required
           />
           <br />
-          <input
+          <textarea
             className="instructions-text"
             type='text' 
             name='instructions' 
             placeholder="Instructions show here"
             value={instructions}
+            rows="2"
             readOnly
           />
           <br />
