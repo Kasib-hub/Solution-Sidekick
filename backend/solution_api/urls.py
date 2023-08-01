@@ -1,4 +1,4 @@
-
+from django.contrib import admin
 from django.urls import path, include
 from . import views
 
@@ -13,5 +13,5 @@ urlpatterns = [
     path('<int:solution_pk>/comments/<int:comment_pk>', views.CommentsView.as_view(), name='comment_detail'),
     path('third_party', views.ThirdPartyView.as_view()),
     path('accounts/', include('accounts.urls')),
-    path('admin/', include('admin.urls')),
+    path('admin/', admin.site.urls, name='admin'),
 ]
