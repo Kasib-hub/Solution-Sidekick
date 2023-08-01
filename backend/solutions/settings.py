@@ -135,10 +135,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # protects resources on django app instead of making a decorator for all of them.
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', # protects every resource by default
-    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication', # how we will authenticate
+        'rest_framework_simplejwt.authentication.JWTAuthentication' # how we will authenticate
     ]
 }
