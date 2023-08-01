@@ -53,8 +53,16 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const logoutUser = useCallback(() => {
+    setAuthTokens(null);
+    setUser(null);
+    localStorage.removeItem('authTokens');
+    navigate('/login');
+  })
+
   let contextData = {
     loginUser: loginUser,
+    logoutUser: logoutUser,
     authTokens: authTokens,
     error: error,
     user: user,
