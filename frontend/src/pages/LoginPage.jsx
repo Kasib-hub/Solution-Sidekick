@@ -9,7 +9,6 @@ const LoginPage = () => {
 
 
   return  (
-
     <div className="general-box">
       <h3>Login to Save Solution!</h3>
       <form onSubmit={loginUser}>
