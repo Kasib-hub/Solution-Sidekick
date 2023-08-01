@@ -33,9 +33,8 @@ class SignupView(CreateAPIView):
         if serializer.is_valid():
             username = serializer.validated_data["username"]
             password = serializer.validated_data["password"]
-            email = serializer.validated_data["email"]
             try:
-                User.objects.create_user(username=username, password=password, email=email)
+                User.objects.create_user(username=username, password=password)
             except:
                 return Response({'error': 'Username already exists'})
 
