@@ -39,9 +39,7 @@ const SignupPage = () => {
         <label htmlFor="username">Username</label>
         <input type="text" name="username" placeholder="Enter Username" />
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" placeholder="Enter password" />
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" placeholder="Enter Email" /><br />
+        <input type="password" name="password" placeholder="Enter password" /><br />
         <button type="submit" className="submitBtn">Sign Up</button>
       </form><br />
       <p>Already have an account? <Link to='/login'>Login!</Link></p>

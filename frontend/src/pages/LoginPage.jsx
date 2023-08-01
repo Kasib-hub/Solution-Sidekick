@@ -16,7 +16,7 @@ const LoginPage = () => {
         <label htmlFor="username">Username</label>
         <input type="text" name="username" placeholder="Enter Username" />
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" placeholder="Enter password" />
+        <input type="password" name="password" placeholder="Enter password" /><br />
         <button type="submit" className="submitBtn">Login</button>
       </form>
       {

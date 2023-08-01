@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(body)
       setUser(jwt_decode(body.access))
       localStorage.setItem('authTokens', JSON.stringify(body))
-      navigate('/');
+      navigate('/solution_list');
     }
   }
 
