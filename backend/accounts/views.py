@@ -38,15 +38,6 @@ class SignupView(CreateAPIView):
             except:
                 return Response({'error': 'Username already exists'})
 
-class GetUserView(APIView):
-    
-    def get(self, request):
-        if request.user.is_authenticated:
-            user = User.objects.get(id=request.user.id)
-            return JsonResponse({'user_id': user.id, 'username':user.username})
-        else:
-            return Response({"error":"User is not authenticated"})
-
 class LogoutView(APIView):
 
     def post(self, request):
