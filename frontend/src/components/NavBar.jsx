@@ -1,14 +1,18 @@
 import NavBarCSS from './NavBar.module.css'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import AuthContext from '../context/AuthContext'
 
 const NavBar = () => {
 
-  const username = localStorage.getItem('username')
+  const {user} = useContext(AuthContext)
 
   return (
     <div className={NavBarCSS.navBar}>
       <div className={NavBarCSS.login_as}>
-        <span>Logged in as: {username}</span>
+        {
+          user && <span>Logged in as: {user.username}</span>
+        }
       </div>
       <div>
         <h3>Solution-Sidekick</h3>
