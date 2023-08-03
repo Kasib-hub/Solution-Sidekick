@@ -11,7 +11,7 @@ const NavBar = () => {
     <div className={NavBarCSS.navBar}>
       <div className={NavBarCSS.login_as}>
         {
-          user && <span>Logged in as: {user.username}</span>
+          user ? <span>Logged in as: {user.username}</span> : <span>Not Logged in</span>
         }
       </div>
       <div>
