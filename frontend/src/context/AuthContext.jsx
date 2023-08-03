@@ -53,12 +53,46 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+    // use useCallback to memoize the function so that it doesn't get recreated on every render
+  // memoizing means that the function will only be recreated if the dependencies change
   const logoutUser = useCallback(() => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem('authTokens');
     navigate('/login');
   })
+
+  const updateToken = useCallback(async () => {
+    const response = await fetch(`http://${BASE_URL}/solution_api/accounts/token/refresh`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({refresh: authTokens.refresh}),
+    })
+    const body = await response.json();
+    if (!response.ok) {
+      setError(body)
+      logoutUser()
+    } else {
+      setError(null)
+      setAuthTokens(body)
+      setUser(jwt_decode(body.access))
+      localStorage.setItem('authTokens', JSON.stringify(body))
+    }
+  }, [authTokens, logoutUser])
+
+
+
+  // update the token every 10 minutes by calling the refresh endpoint
+  useEffect(() => {
+    const tokenInterval = setInterval(() => {
+      if(authTokens) {
+        updateToken();
+      }
+    }, 60000);
+    return () => clearInterval(tokenInterval);
+  }, [authTokens, updateToken]);
 
   let contextData = {
     loginUser: loginUser,

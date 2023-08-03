@@ -1,5 +1,6 @@
 import { useNavigate, Link } from "react-router-dom"
 import { useState } from "react"
+import Alert from 'react-bootstrap/Alert';
 // consider using state to keep error message to user
 const SignupPage = () => {
 
@@ -14,7 +15,6 @@ const SignupPage = () => {
       "username": event.target.username.value,
       "password": event.target.password.value,
     }
-    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC path=/;`
     signUp(userData)
   }
 
@@ -32,6 +32,7 @@ const SignupPage = () => {
 
   return (
     <div className="general-box">
+      {err && <Alert key="danger" variant="danger">{err}</Alert>}
       <h3>Sign up to Save some Solutions!</h3>
       
       <form onSubmit={handleSubmit}>
@@ -42,9 +43,7 @@ const SignupPage = () => {
         <button type="submit" className="submitBtn">Sign Up</button>
       </form><br />
       <p>Already have an account? <Link to='/login'>Login!</Link></p>
-
-      {/* style the error message to be different color. Purple? */}
-      {err ? <p className="err">{err}</p> : <p></p>}
+      
     </div>
 
   )
