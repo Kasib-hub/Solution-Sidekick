@@ -7,7 +7,7 @@ const LogoutPage = () => {
 
   return (
     <div className="general-box">
-      <h3>Are you sure want to Logout?</h3>
+      <h3>Are you sure want to Logout?</h3><br />
       <button type='submit' className='submitBtn' onClick={logoutUser}>Yes, Log me Out</button>
     </div>
 
