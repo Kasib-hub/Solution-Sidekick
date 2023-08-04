@@ -24,11 +24,11 @@ const NavBar = () => {
         <span> | </span>
         <Link to='/create_solution'>Create a Solution</Link>
         <span> | </span>
-        <Link to='/login'>Login</Link>
+        <Link to='/signup'>Register Account</Link>
         <span> | </span>
-        <Link to='/signup'>Signup</Link>
-        <span> | </span>
-        <Link to='/logout'>Log Out</Link>
+        {
+          user ? <Link to='/logout'>Log Out</Link> : <Link to='/login'>Login</Link>
+        }
       </div>
     </div>
   )

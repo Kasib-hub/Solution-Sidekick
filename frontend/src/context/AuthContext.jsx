@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   // if local storage has a token, set the state to that token, otherwise set it to null
+  // callback function to memoize the function so that it doesn't change on every render
   const [authTokens, setAuthTokens] = useState( () => {
       return localStorage.getItem('authTokens') 
       ? JSON.parse(localStorage.getItem('authTokens'))
@@ -91,6 +92,7 @@ export const AuthProvider = ({ children }) => {
         updateToken();
       }
     }, 60000);
+    // clear the interval when the component unmounts
     return () => clearInterval(tokenInterval);
   }, [authTokens, updateToken]);
 
