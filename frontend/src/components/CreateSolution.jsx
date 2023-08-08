@@ -1,12 +1,14 @@
 import Flask  from "../assets/FlaskFull.svg"
 import { useState, useEffect } from "react"
+import AuthContext from '../context/AuthContext';
+import { useContext } from 'react';
 import { createSolution } from "../api/SolutionAPI"
 import { useNavigate } from "react-router-dom"
 import PopupFraction from "./PopupFraction"
 
 // needs to take in the single solution object as a prop
 const CreateSolution = () => {
-  
+  let {user, authTokens} = useContext(AuthContext)
   const navigate = useNavigate()
   const userID = localStorage.getItem('userID')
   const [inputs, setInputs] = useState({
@@ -18,6 +20,7 @@ const CreateSolution = () => {
   const [sourceVol, setsourceVol] = useState(0)
   const [remainderVol, setRemainderVol] = useState(0)
   const [instructions, setInstructions] = useState(`Pour 0  of source volume into 0 of solvent`)
+  const [error, setError] = useState(null)
 
   // switching input for decimal and fractions
   const [fractionPopup, setFractionPopup] = useState()
@@ -52,7 +55,7 @@ const CreateSolution = () => {
   }
 
   // handleSubmit makes the POST request
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
       let solutionObj = {
       "units" : event.target.units.value,
@@ -64,13 +67,14 @@ const CreateSolution = () => {
       "instructions": event.target.instructions.value,
       "creator": userID
     }
-    createSolution(solutionObj)  
-      .then(res => {
-        if (res.ok) {
-          alert("Solution Created Successfully")
-          navigate('/solution_list')
-        } else {alert("Incomplete form\nEnsure measurements are realistic\nDon't submit solutions that require measurements past 2 decimal points.")}
-      })
+    
+    const result = await createSolution(authTokens.access, solutionObj)
+    if (result === null) {
+      setError("Error creating solution")
+    } else {
+      setError(null)
+    }
+
   }
   // update formula parameters in a react way
   const handleChange = (event) => {

@@ -1,4 +1,5 @@
 
+import { React } from 'react';
 import { userToken } from '../helpers/helperFunctions';
 import axios from 'axios'
 const BASE_URL = import.meta.env.VITE_API_URL
@@ -29,18 +30,53 @@ const fetchSolutionbyId = (solutionID) => {
     .then(res => res.json())
     .then(data => data.result)
 }
+// probably best to define the api call where it is used and not pass the token as an argument
+// const createSolution = (solutionObj, token) => {
+//   return fetch(`http://${BASE_URL}/solution_api/`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${token}`
+//     },
+//     body: JSON.stringify(solutionObj)
+//   })
+// }
 
-const createSolution = (solutionObj) => {
-  const token = userToken()
-  return fetch(`http://${BASE_URL}/solution_api/`, {
-    method: 'POST',
+const createSolution = async (token, solutionObj) => {
+  const [error, setError] = useState(null);
+
+  const url = `http://${BASE_URL}/solution_api/`
+
+  const context = {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Token ${token}`
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify(solutionObj)
-  })
+  }
+
+  try {
+    const res = await fetch(url, context)
+    const body = await res.json()
+    if (!res.ok) {
+      if (res.status === 400) {
+        setError(`Error: ${JSON.stringify(body)}`)
+      } else {
+        setError(`${res.status} (${res.statusText})`)
+      }
+    } else {
+      setError(null)
+    }
+    return body
+  }
+  catch (error) {
+    setError(`An error occurred: ${error.message}`)
+    console.error(error)
+    return null
+  }
 }
+
 
 const putSolutionbyId = (solutionID, updatedData) => {
   const token = userToken()
