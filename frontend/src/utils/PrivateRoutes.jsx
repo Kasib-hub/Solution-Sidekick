@@ -9,6 +9,7 @@ const PrivateRoutes = () => {
   return (
     // dont redirect to the same page!
     // this is saying, if the user is authenticated let them see the homepage, otherwise, go to the login page. The page that triggers all of this is nested within private routes
+    // the user information is stored in local storage, that would then get decoded
     user ? <Outlet /> : <Navigate to='/login' />
   )
 }

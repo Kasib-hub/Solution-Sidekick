@@ -11,7 +11,6 @@ import PopupFraction from "./PopupFraction"
 const CreateSolution = () => {
   let {user, authTokens} = useContext(AuthContext)
   const navigate = useNavigate()
-  const userID = localStorage.getItem('userID')
   const [inputs, setInputs] = useState({
     source_conc: 0,
     final_conc: 0,
@@ -66,8 +65,23 @@ const CreateSolution = () => {
       "final_vol": event.target.final_vol.value,
       "title": event.target.title.value,
       "instructions": event.target.instructions.value,
-      "creator": userID
+      "creator": user.user_id
     }
+
+    // error handling the measurements
+    if (solutionObj.units === "µL") {
+      // check if source volume has no more than one decimal place
+      if (solutionObj.source_vol % 1 !== 0 && solutionObj.source_vol.toString().split(".")[1].length > 1) {
+        setError("Source volume must have no more than one decimal place.")
+        return
+      }
+      // else check if remainder volume has no more than one decimal place
+      else if (remainderVol % 1 !== 0 && remainderVol.toString().split(".")[1].length > 1) {
+        setError("Solvent volume must have no more than one decimal place")
+        return
+      }
+    }
+      
     
     const result = await createSolution(authTokens.access, solutionObj)
     if (result === null) {
@@ -75,7 +89,6 @@ const CreateSolution = () => {
     } else {
       navigate('/solution_list')
     }
-
   }
   // update formula parameters in a react way
   const handleChange = (event) => {
