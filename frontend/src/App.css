@@ -267,5 +267,9 @@ textarea {
 
 .alert {
   color: red;
-  padding-bottom: 1rem;
+  background-color: rgb(250, 232, 232);
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem;
+  border: solid 2px red;
 }

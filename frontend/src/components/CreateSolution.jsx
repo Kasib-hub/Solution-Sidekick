@@ -1,4 +1,5 @@
 import Flask  from "../assets/FlaskFull.svg"
+import Alert from 'react-bootstrap/Alert';
 import { useState, useEffect } from "react"
 import AuthContext from '../context/AuthContext';
 import { useContext } from 'react';
@@ -72,7 +73,7 @@ const CreateSolution = () => {
     if (result === null) {
       setError("Error creating solution")
     } else {
-      setError(null)
+      navigate('/solution_list')
     }
 
   }
@@ -86,6 +87,7 @@ const CreateSolution = () => {
   // goal is to have form be display flexed with labels, nice big submit button
   return (
       <div className="general-box">
+        {error && <Alert key="danger" variant="danger">{error}</Alert>}
         <h2>Create A Solution</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='title'>Title</label>
@@ -104,6 +106,7 @@ const CreateSolution = () => {
                 name='units'
                 value='µL'
                 onChange={handleChange}
+                
               /> &#181;L
             </div>
             <div>
@@ -112,6 +115,7 @@ const CreateSolution = () => {
                 name='units'
                 value='mL'
                 onChange={handleChange}
+                
               /> mL
             </div>
             <div>
@@ -120,6 +124,7 @@ const CreateSolution = () => {
                 name='units'
                 value='L'
                 onChange={handleChange}
+                required
               /> L
             </div>
 

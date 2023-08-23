@@ -33,7 +33,6 @@ const App = () => {
                 <Route path='solution/:solutionID/delete' element={<DeleteSolutionPage />}/>
                 <Route path='/logout' element={<LogoutPage />}/>
               </Route>
-
               <Route path='/login' element={<LoginPage />}/>
               <Route path='/signup' element={<SignupPage />}/>
             
