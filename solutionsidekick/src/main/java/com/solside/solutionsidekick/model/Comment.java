@@ -40,5 +40,5 @@ public class Comment {
     private Solution solution;
 
     @OneToMany(mappedBy = "comment")
-    private List<Like> likeList;
+    private List<Like> likes;
 }
