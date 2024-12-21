@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,12 +16,12 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
-public class AppUserController implements IAppController<AppUser, UUID> {
+public class UserController implements IController<AppUser, UUID> {
 
     AppUserService userService;
 
     @Override
-    public ResponseEntity<AppUser> getById(UUID id) {
+    public ResponseEntity<AppUser> getById(@PathVariable UUID id) {
         return new ResponseEntity<>(this.userService.findById(id), HttpStatus.OK);
     }
 

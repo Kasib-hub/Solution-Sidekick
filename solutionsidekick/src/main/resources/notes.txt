@@ -1,0 +1,6 @@
+http://localhost:8888/swagger-ui/index.html
+
+When creating my table of comments, It would be wise to retrieve all authors once, retrieve all solutions once,
+Then just map them to each other to create the table, saves on creating way too many calls.
+
+Likes will just be create on liking, and delete on unliking

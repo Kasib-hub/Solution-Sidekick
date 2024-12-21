@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "Solution Sidekick API", description = "backend for Solution Sidekick")
-public interface IAppController<T, ID> {
+public interface IController<T, ID> {
 
     @GetMapping("/{id}")
     ResponseEntity<T> getById(@PathVariable ID id);

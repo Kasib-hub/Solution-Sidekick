@@ -15,7 +15,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/solutions")
 @AllArgsConstructor
-public class SolutionController implements IAppController<Solution, UUID>{
+public class SolutionController implements IController<Solution, UUID> {
 
     SolutionService solutionService;
 
@@ -24,12 +24,10 @@ public class SolutionController implements IAppController<Solution, UUID>{
         return new ResponseEntity<>(this.solutionService.findById(id), HttpStatus.OK);
     }
 
-    @Override
     public ResponseEntity<Solution> create(Solution solution) {
         return new ResponseEntity<>(this.solutionService.save(solution), HttpStatus.CREATED);
     }
 
-    @Override
     public ResponseEntity<Solution> update(UUID id, Solution entity) {
         return null;
     }

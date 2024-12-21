@@ -1,6 +1,7 @@
 package com.solside.solutionsidekick.service;
 
 import com.solside.solutionsidekick.model.Solution;
+import com.solside.solutionsidekick.repository.AppUserRepository;
 import com.solside.solutionsidekick.repository.SolutionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.UUID;
 public class SolutionService implements IService<Solution> {
 
     SolutionRepository solutionRepository;
-    AppUserService appUserService;
+    AppUserRepository appUserRepository;
 
     @Override
     public List<Solution> findAll() {
@@ -27,15 +28,22 @@ public class SolutionService implements IService<Solution> {
     }
 
     @Override
-    public Solution save(Solution solutionRequest) {
-        solutionRequest.setUser(
-                appUserService.findById(solutionRequest.getUser().getId())
-        );
-        return solutionRepository.save(solutionRequest);
+    public Solution save(Solution solution) {
+        if (appUserRepository.existsById(solution.getUserId())) {
+            return solutionRepository.save(solution);
+        }
+        throw new EntityNotFoundException("No user found by id: " + solution.getUserId());
     }
 
     @Override
     public void deleteById(UUID id) {
         solutionRepository.deleteById(id);
+    }
+
+    public List<Solution> findAllByUserId(UUID userId) {
+        if (appUserRepository.existsById(userId)) {
+            return solutionRepository.findByUserId(userId);
+        }
+        throw new EntityNotFoundException("No user found by id: " + userId);
     }
 }

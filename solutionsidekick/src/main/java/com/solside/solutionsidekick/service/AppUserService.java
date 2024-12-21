@@ -24,6 +24,10 @@ public class AppUserService implements IService<AppUser> {
         return appUserRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No user found with id: " + id));
     }
 
+    public AppUser findByEmail(String email) {
+        return this.appUserRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("No user found with email: " + email));
+    }
+
     @Override
     public AppUser save(AppUser user) {
         appUserRepository.findByEmail(user.getEmail()).
